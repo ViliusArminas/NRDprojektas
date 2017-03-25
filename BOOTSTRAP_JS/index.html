@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+    <ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab" href="#main">Pagrindinis</a></li>
+			<li><a href="#array" data-toggle="tab">Duomenø masyvas</a></li>
+			<li><a href="#calculator" data-toggle="tab">Skaièiuotuvas</a></li>
+			<li><a href="#areaCalculator" data-toggle="tab">Ploto skaièiavimas</a></li>
+			<li><a href="#table" data-toggle="tab">Kintanti lentelë</a></li>
+			<li><a href="#iframe" data-toggle="tab">Puslapiavimas</a></li>
+			<li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Pasirinkti<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+              <li><a href="#">HTML</a>
+              </li>
+              <li><a href="#">JSS</a>
+              </li>
+              <li><a href="#">Jquery</a>
+              </li>
+              <li class="divider"></li>
+              <li><a href="#">Apie</a>
+              </li>
+          </ul>
+      </li>
+		</ul>
+		
+		<div class="tab-content">
+		  
+			<div id="main" class="tab-pane fade in active container">
+			  <h2 class="text-success"> Sveiki atvykæ!</h2>
+			  <p>Ðiandienos data: <b><span style="color:blue;" id="dateId"></span></b></p>
+			  <p>Dabar yra: <b><span style="color:red;" id="timeId"></span></b></p>
+			  <hr>
+			  
+			  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+	        <h4><a href="#collumn1" data-toggle="collapse">HTML</a></h4>
+          <div id="collumn1" class="collapse in well well-sm">   
+            <p>Pagrindinis HTML kalbos vienetas yra elementas. Kaip ir 
+            XML, HTML elementas turi vardà ir gali turëti bet koká skaièiø atributø.
+            Elemento viduje gali bûti tekstas bei kiti elementai. Tiek tekstas, tiek
+            ir dukteriniai elementai paprastai gali kartotis ir sekti bet kuria tvarka.
+            Elemento atributai turi vardà ir reikðmæ. Jei galimi atributai nenurodomi, paprastai galioja 
+            sutartos nutylëjimo taisyklës. Pavyzdþiui, HTML fragmentas color red rraudona turi du elementus. 
+            Vienas jø (font) perjungia rodomo teksto spalvà á raudonà. Ðio elemento viduje esantis antrasis
+            elementas (b),perjungia ðriftà á paryðkintà. Pirmasis elementas turi vienà atributà (color) su
+            reikðme red. Antrasis elementas atributø neturi.HTML kode atributø reikðmes rekomenduojama apgaubti
+            kabutëmis, nors HTML 4.01 standartas to nereikalauja.
+            </p>
+          </div>
+        </div>
+
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+	        <h4><a href="#collumn2" data-toggle="collapse">CSS</a></h4>
+          <div id="collumn2" class="collapse in well well-sm">   
+            <p>CSS taisyklës sintaksë yra paprasta, jà sudaro trys dalys: selektorius, 
+            parametras ir jo reikðmë. Selektorius tai yra ta dalis, kuri parenka kokiems 
+            elementams bus taikomos css taisyklës. Selektoriø su kiekviena nauja css kalbos 
+            versija atsiranda vis ávairesniø. Reiktø nepamirðti, kad ne visus selektorius supranta visos narðyklës.
+            Elemento pavadinimas. Toks css kalbos apraðas nuo visø puslapyje esanèiø paveikslëliø nuimtø rëmelá.
+            Parametro vietoje yra raðoma css kalbos komanda. Komandø yra apie 90, jos visos yra suraðytos css þinyne.
+            Viename taisykliø bloke kiekviena komanda negali kartotis, visos turi bûti skritingos, taèiau skirtingø gali
+            bûti tiek kiek reikia. Daugelis parametrø yra angliðki pilni þodþiai, todël mokant anglø kalbà yra ið ties
+            paprasta juos prisiminti. Mokantis siûlyèiau pasinaudoti anglø þodynu ir susiþinoti lietuviðkus vertimus, 
+            tai padës lengviau suprasti kiekvieno parametro reikðmæ ir nereikës mokytis atmintinai.
+            </p>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+	        <h4><a href="#collumn3" data-toggle="collapse">JS</a></h4>
+          <div id="collumn3" class="collapse in well well-sm">   
+            <p>JavaScript – objektiðkai orientuota skriptø programavimo kalba, besiremianti prototipø principu. 
+            Daþniausiai kalba naudojama internetiniø puslapiø interaktyvumo realizacijai, bet taip pat naudojama
+            ir kaip galimybë skriptais manipuliuoti tam tikromis programomis. Kalba sukurta Brendano Eicho Netscape 
+            kompanijoje ir pavadinta Mocha, vëliau pervadinta á LiveScript, ir galiausiai tapo JavaScript. Vienas ið
+            argumentø pervadinant kalbà buvo sintaksinis panaðumas su Java kalba. Paskutinë JavaScript versija – 1.8.
+            JavaScript kalbos sintaksë perimta ið C kalbos, su kitais komponentais bendraujama per interfeisus
+            (dokumento objektiná modelá), palaikoma Unicode, reguliarios iðraiðkos (regular expresions), taip pat 
+            teksto vykdymas naudojant eval funkcijà. Paprastai JavaScript kalbos kodas átraukiamas á HTML puslapius, 
+            tokiu bûdu iðpleèiant statinius HTML puslapius dinaminiu skripto funkcionalumu – galimas anketø parametrø tikrinimas,
+            naujø langø atidarymas, suskleidþiamos hierarchinës struktûros rodymas, iðsiskleidþiantis meniu ir daug kitø interaktyvumo formø. 
+            JavaScript kalba remiasi kelios pagrindinës svetainiø kûrimo metodologijos – DHTML (Dinaminis HTML), AJAX, SPA.
+            </p>
+          </div>
+        </div>
+        <hr>
+
+		  </div>
+		  
+			<div id="array" class="tab-pane fade container">
+			  <p style="font-size:35px;">Masyvas: <span id="arrayId" style="font-size:35px;" class="text-success">tuðèias</span></p>
+			  <button type="button" onClick="removeLastFromArray();" class="btn"><span class="glyphicon glyphicon-minus"></span></button>
+			  <button type="button" onClick="addToArray();" class="btn"><span class="glyphicon glyphicon-plus"></span></button>
+			</div>
+			
+			<div id="calculator" class="tab-pane fade container">
+			  <h2 class="text-info">Skaièiaus këlimas kvadratu</h2>
+			  <form id="calculatorFormId">
+		    <br>
+		    <div class="row">
+		       <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+		          <label for="inputNumberId">Pradinis skaièius</label>
+		         <input type="number" id ="inputNumberId" placeholder="Áveskite skaièiø" class="form-control" required>
+	         </div>
+		    </div>
+		    <button type="submit" class="btn btn-primary">Apskaièiuoti</button>
+		    <br><br>
+		    <div class="row">
+		       <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+		         <label for="sqrResultId">Skaièius pakeltas kvadratu</label>
+		         <input type="text" id ="sqrResultId" placeholder="Rezultatas" class="form-control" disabled>
+	         </div>
+		    </div>
+		   </form>
+			</div>
+			
+			
+			<div id="areaCalculator" class="tab-pane fade container">
+			  <h2 class="text-info">Ritinio ploto apskaièiavimas</h2>
+			  <img height="300px" width="150px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Cylinder_geometry.svg/200px-Cylinder_geometry.svg.png">
+			  <br><br>
+			  <h3 class="text-info">S= r*h*?(r+h)</h3>
+			  <form id="areaCalculatorFormId">
+			    
+			   <div class="row">
+		       <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+		        <div class="input-group">
+    		      <input type="number" id ="radiusId" placeholder="Áveskite spindulá r" class="form-control" required>
+    			    <span class="input-group-addon">cm²</span>
+    		    </div>
+	         </div>
+		    </div>
+			    
+		    <div class="row">
+		       <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+		        <div class="input-group">
+    		      <input type="number" id ="heightId" placeholder="Áveskite aukðtá h" class="form-control" required>
+    			    <span class="input-group-addon">cm²</span>
+    		    </div>
+	         </div>
+		    </div>
+
+		    <button type="submit" class="btn btn-primary">Apskaièiuoti</button>
+		    <br><br>
+		    <div class="row">
+		       <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+		          <div class="input-group">
+      		      <input type="text" id ="resultId" placeholder="Ritinio plotas" class="form-control" disabled>
+      			    <span class="input-group-addon">cm²</span>
+    		      </div>
+	         </div>
+		    </div>
+		   </form>
+			</div>
+			
+			
+			<div id="table" class="tab-pane fade container">
+			  <h2 class="text-info">Kintanti lentelë</h2>
+			  <table id="animalTableId" class="table table-hover table-striped">
+          <thead>
+            <tr>
+              <th>Gyvûnas</th>
+              <th>Vardas</th>
+              <th>Metai</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ðuo</td>
+              <td>Rikis</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Katë</td>
+              <td>Pukis</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Papûga</td>
+              <td>Rëksnys</td>
+              <td>7</td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        <button type="button" onClick="addToTable()" class="btn btn-default">Pridëti áraðà</button>
+        <button type="button" onClick="removeFromTable()" class="btn btn-default">Ðalinti paskutiná áraðà</button>
+			</div>
+			
+			
+			
+			<div id="iframe" class="tab-pane fade container">
+			  <h2 id="currentWebsiteId" class="text-info text-center">Wikipedia</h2>
+			  <br>
+			  <div class="row">
+			    <iframe width="100%" height="500px"  id="iframeId" src="https://www.wikipedia.org/" auto-scrolling="true"></iframe>
+			  </div>
+			  <br>
+  			<div class="row-fluid">
+  			  <button type="button" onClick="changeWebsite(1)" class="btn btn-default">Wikipedia</button>
+  			  <button type="button" onClick="changeWebsite(2)" class="btn btn-success">W3Schools</button>
+  			</div>
+			</div>
+			
+			
+		</div>
+		
+		
+		<script src="script.js"></script>
+  </body>
+
+</html>
