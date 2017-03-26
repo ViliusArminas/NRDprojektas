@@ -1,0 +1,126 @@
+
+body {
+    font-family: 'Baloo Bhaina', cursive;
+    margin: 0;
+    animation-direction: 
+}
+.bg-home {
+    background-image: url("https://static.pexels.com/photos/1510/road-sky-sand-street.jpg");
+    background-size: 1800px 1200px;
+    background-repeat: no-repeat;
+}
+.bg-forma {
+    background-image: url("https://www.sketchuptextureclub.com/public/texture_m/0013-road-texture-seamless.jpg");
+}
+
+ul {
+    list-style-type: none;
+    padding: 20px;
+    margin: 0;
+    font-size: 30px;
+    background-color: #414244;
+}
+
+li {
+    display: inline;
+    
+}
+
+ul.menu a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 30px;
+    margin-left: 100px;
+}
+.agree a {
+     color: darkblue;
+	 text-decoration: none;
+}
+
+ul.menu a:hover {
+    color:rgb(237, 222, 130);
+}
+
+
+.container {
+    margin-left: 300px;
+}
+#btn-forma {
+    width:100px;
+    height:100px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    background-color:rgb(237, 222, 130);
+    font-family: 'Baloo Bhaina', cursive;
+    
+}
+
+.car {
+    width: 250px;
+    position: relative;
+    animation-name: slide-left;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+@keyframes slide-left {
+0% {left: 0;}
+50%{left: 78%;}
+100%{left: 0;}
+}
+
+#pgr-antraste {
+	text-align: center;
+    font-size: 30px;
+    text-transform: capitalize;
+}
+
+input[type=text], input[type=number], select {
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.1);
+    border: 1px solid gray;
+}
+fieldset{
+    width: 50%;
+    border-radius: 10px;
+    margin-left: 20%;
+    background-color: rgb(243, 243, 254);
+}
+
+fieldset fieldset {
+    background-color: rgb(232, 232, 253);
+}
+.agree, .reg {
+    margin-left: 20%;
+}
+.agree, .reg {
+    margin-left: 20%;
+}
+.reg {
+    padding: 10px 15px;
+    margin-right: 5px;
+    background-color: rgba(0,225,0, 0.2);
+    border: 1px solid gray;
+    border-radius: 4px;
+    font-family: 'Baloo Bhaina', cursive;
+}
+
+.reg:hover {
+	background-color: #32CD32;
+}
+
+#btn-forma:hover {
+	background-color: #FFD700;
+}
+.cat {
+	
+    width: 200px;
+	height: 200px;
+    border-radius: 50%;
+}
+
+
