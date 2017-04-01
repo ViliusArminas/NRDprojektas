@@ -73,20 +73,19 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Vardenis</td>
+                    <td class="nameCollumn">Vardenis</td>
                     <td>Pavardenis</td>
                     <td><button class="remove">Trinti</button></td>
                     <td><button class="cloneTrigger">Klonuoti</button></td>
                 </tr>
                 <tr>
-                    <td>Name</td>
+                    <td class="nameCollumn">Name</td>
                     <td>LastName</td>
                     <td><button class="remove">Trinti</button></td>
                     <td><button class="cloneTrigger">Klonuoti</button></td>
-
                 </tr>
                 <tr>
-                    <td>Name2</td>
+                    <td class="nameCollumn">Name2</td>
                     <td>LastName2</td>
                     <td><button class="remove">Trinti</button></td>
                     <td><button class="cloneTrigger">Klonuoti</button></td>
@@ -94,14 +93,18 @@
             </tbody>
         </table>
     </div>
+	<br>
+	<label for="filter">Filtruoti pagal vardą:</label> 
+	<input id="filterCheckboxId" type="checkbox"><br>
+	<label for="filter">Ieškomas vardas:</label> 
+    <input id="filter" type="text"/>
+	
     <br><br>
 
-    <label id="clone">  Clone(), delegate() and insertAfter() functions </label>
-
-    <br><br>
-
-    <label id="fade"> FadeIn(), FadeOut(), html(), setInterval() and clearInterval() functions </label>
-    <button id="fadeTrigger">Hide table</button>
+    <label id="clone">  Clone(), delegate() and insertAfter() functions </label><br>
+    <label id="fade"> FadeIn(), FadeOut(), html(), setInterval() and clearInterval() functions </label><br>
+    <label id="filterr">keyup, filter(), parent(), hide(), show(), change(), is() </label><br><br>
+	<button id="fadeTrigger">Hide table</button>
     <span id="timer"></span>
 
     <br><br>
@@ -134,11 +137,28 @@
         magna urna, at congue massa tristique a. Cras at pellentesque felis. Nullam eu interdum sapien, vitae rutrum risus.
         Pellentesque maximus porttitor sagittis.</p>
 
-
+		<hr>
+		<label id="findLabel">find(), css()</label>
+		<p>Pingvinas priklauso <span id="animalId" >gyvūnų</span> karalystei.</p>
+		<p>Klevas priklauso <span id="plantId" >augalų</span> karalystei.</p>
+		<p>Ameba priklauso <span id="protId" >protistų</span> karalystei.</p>
+		<br>
+		<hr>
+		
+		<label id="picLabel">mouseEnter(), mouseLeave()</label>
+		<br>
+		<img id="picId" height="200" width="300" src="http://www.adobetutorialz.com/content_images/AdobePhotoshop/ART-D/tutorial438/1.jpg">
+		<br>
+		<hr>
+		<label id="dataId">data()</label>
+		<p id="data">2 + 2 =</p>
+		<button id="dataButtonId">Show Result</button>
+		<
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
     <script>
+		// closest(), append(), remove(), text(), ajax(), removeClass(), text(), onClick
         $(function () {
             var url = "http://mankaz4.stud.if.ktu.lt/people.php";
 
@@ -155,7 +175,7 @@
                     dataType: "json",
                     success: function (response) {
                         $.each(response, function () {
-                            $('tbody').append('<tr><td>' + this.name + '</td><td>' + this.lastName + '</td><td><button class="remove">Trinti</button></td><td><button class="cloneTrigger">Klonuoti</button></td></tr>');
+                            $('tbody').append('<tr><td class="nameCollumn"> ' + this.name + '</td><td>' + this.lastName + '</td><td><button class="remove">Trinti</button></td><td><button class="cloneTrigger">Klonuoti</button></td></tr>');
                         });
 
                         $("#alert-message").text("Jus pridejote " + kiek + " eiluciu").removeClass("hidden");
@@ -225,6 +245,7 @@
 
 
         // Scroll down function for navigation
+		// bind(), animate(), stop(), preventDefault(), offset(), top(), attr()
         $('a.page-scroll').bind('click', function (event) {
             var $anchor = $(this);
             $('html, body').stop().animate({
@@ -232,6 +253,67 @@
             }, 1250);
             event.preventDefault();
         });
+		
+		//--------------------------------------------------------------------
+		// find(), css()
+		$('p').find('span').css({'font-weight' : 'bold'});
+		$('p').find('#animalId').css({'color' : 'brown'});
+		$('p').find('#plantId').css({'color' : 'green'});
+		$('p').find('#protId').css({'color' : 'grey'});
+		
+		//--------------------------------------------------------------------
+		// mouseEnter(), mouseLeave()
+		$('#picId').mouseenter(function(){
+			$(this).attr('src', 'http://i.imgur.com/Q4bI5.gif');
+		});
+		
+		$('#picId').mouseleave(function(){
+			$(this).attr('src', 'http://www.adobetutorialz.com/content_images/AdobePhotoshop/ART-D/tutorial438/1.jpg');
+		});
+		
+		//--------------------------------------------------------------------
+		// keyup, filter(), parent(), hide(), show(), change(), is()
+		$('#filter').keyup(function(){
+			var checked = $('#filterCheckboxId').is(':checked');
+			if (checked){
+				filter();
+			}	
+		});
+		
+		$('#filterCheckboxId').change(function(){
+			var checked = $(this).is(':checked');
+			if (checked){
+				filter();
+			}else{
+				$('td').parent().show();
+			}
+		});
+		
+		function filter(){
+			var searchedName = $('#filter').val();
+			if (searchedName == ""){
+				$('td').parent().show();
+				return;
+			}
+			$('td').parent().hide();
+
+			$('td, .nameCollumn').filter(function(){
+				var rowName = $(this).text();
+				return (rowName.toLowerCase()).includes(searchedName.toLowerCase());
+			}).parent().show();
+		}
+		
+		//--------------------------------------------------------------------
+		// data()
+		$('#data').data('pObject', {
+			type : 'operation',
+			result : '4'
+			});
+		
+		$('#dataButtonId').click(function(){
+			alert("2 + 2 = " + $('#data').data('pObject').result);
+		});
+
     </script>
 </body>
 
