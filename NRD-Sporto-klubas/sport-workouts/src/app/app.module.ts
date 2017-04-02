@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { routes } from './app.router';
+import { AlertModule } from 'ng2-bootstrap';
 
 import { AppComponent } from './app.component';
 import { BuildWorkoutComponent } from './components/build-workout/build-workout.component';
@@ -24,7 +25,8 @@ import { ViewExerciseComponent } from './components/view-exercise/view-exercise.
     BrowserModule,
     FormsModule,
     HttpModule,
-    routes
+    routes,
+    AlertModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
