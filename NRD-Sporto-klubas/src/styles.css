@@ -1,0 +1,111 @@
+/* You can add global styles to this file, and also import other style files */
+.mano-rutina {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    height: 500px;
+    border: rgba(237,85,100,0.22) 1px solid;
+    border-radius: 5px;
+    overflow: auto;
+    background-color: rgba(237, 85, 100, 0.09);
+}
+
+.mano-rutina.issaugota {
+    height: auto;
+}
+
+.navbar {
+    
+    background-color: #5b6472 !important;
+}
+
+.nav {
+    
+    font-size: 18px !important;
+    font-weight: bold !important;
+    text-transform: uppercase !important;
+    margin-top: 24px !important;
+}
+
+.navbar-brand {
+    
+    font-size: 30px !important; 
+    height: 100px !important;
+}
+
+.btn {
+    
+    background-color: #888e98 !important;
+    color: #fff !important;
+}
+
+ul.navbar-nav a {
+    color: #fff !important;
+}
+
+a.navbar-brand {
+    color: #fff !important;
+}
+
+#navbar a,
+.navbar-default .navbar-brand {
+    transition: color 300ms !important;
+}
+
+#navbar a:hover {
+    color: #873528 !important;
+}
+
+.navbar-default .navbar-brand:hover {
+    color: #873528 !important;
+}
+
+.dropdown-menu>li>a {
+    text-transform: initial !important;
+     background-color: #888e98 !important;
+}
+.dropdown-menu {
+
+     background-color: #888e98 !important;
+}
+
+@media (max-width: 992px) {
+   .mano-rutina {
+       height: auto;
+       min-height: 200px;
+    }
+}
+
+@media (max-width: 800px) {
+    .btn-group-justified {
+        display: block !important;
+    }
+    
+    .btn-group-justified .btn-group {
+        display: inline-block !important;
+        width: auto !important;
+        
+    }
+    
+    .btn-group-justified .btn-group button {
+        border-radius: 4px !important;
+        margin-bottom: 5px !important;
+    }
+}
+
+@media (max-width: 550px) {
+    .thumbnail img {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 24px !important;
+        height: auto !important;
+    }
+    
+    .navbar-brand img {
+        height: 40px !important;
+    }
+}
