@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Exercise } from "app/models/exercise";
 
 @Component({
   selector: 'app-add-exercise',
@@ -12,4 +13,18 @@ export class AddExerciseComponent implements OnInit {
   ngOnInit() {
   }
 
+  @Input()
+  exerciseDetails: Exercise;
+
+  @Output()
+  saveEvent = new EventEmitter<Exercise>();
+
+  save(){
+    this.saveEvent.emit(this.exerciseDetails);
+  }
+
+  cancel(){
+    this.saveEvent.emit(null);
+  }
+  
 }
