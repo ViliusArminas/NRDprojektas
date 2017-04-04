@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output,  EventEmitter} from '@angular/core';
 import { DataServiceService } from "app/services/data-service.service";
 import { Exercise } from "app/models/exercise";
 
@@ -24,5 +24,12 @@ refreshList(){
       this.exercises = c;
       this.isLoading = false;
     });
+  }
+
+  @Output()
+  addEvent = new EventEmitter<Exercise>(); 
+
+  add(){
+    //this.addEvent.emit(this.exercises);
   }
 }

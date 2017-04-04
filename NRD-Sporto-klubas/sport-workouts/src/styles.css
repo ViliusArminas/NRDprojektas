@@ -33,10 +33,15 @@
     height: 100px !important;
 }
 
-.btn {
+.btn-grey {
     
     background-color: #888e98 !important;
     color: #fff !important;
+}
+
+.btn-grey:hover {
+    
+    color: #873528 !important;
 }
 
 ul.navbar-nav a {

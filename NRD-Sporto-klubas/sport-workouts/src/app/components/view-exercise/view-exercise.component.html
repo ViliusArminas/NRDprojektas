@@ -1,4 +1,4 @@
-  <button *ngIf="!exercise" (click)="addNewExercise()" class="btn btn-primary">Pridėti pratimą</button>
+  <button *ngIf="!exercise" (click)="addNewExercise()" class="btn btn-grey btn-primary">Pridėti pratimą</button>
   <app-add-exercise *ngIf="exercise" [exerciseDetails]="exercise" (saveEvent)="saveExercise($event)"></app-add-exercise>
 <app-exercise-groups></app-exercise-groups>
 <div class="row" style="margin-top: 20px;">
@@ -11,7 +11,7 @@
         <div class="caption">
           <p>{{i.name}}</p>
           <p>Daugiau informacijos</p>
-          <button class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
+          <button class="btn btn-grey btn-default"><strong>Redaguoti</strong></button>
         </div>
       </div>
     </div>

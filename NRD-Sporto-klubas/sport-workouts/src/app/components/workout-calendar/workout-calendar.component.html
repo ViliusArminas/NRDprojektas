@@ -2,20 +2,20 @@
   <div class="col-md-4">
     <div class="btn-group">
       <div
-        class="btn btn-default"
+        class="btn btn-grey btn-default"
         mwlCalendarPreviousView
         [view]="view"
         [(viewDate)]="viewDate">
         Ankstesnis
       </div>
       <div
-        class="btn btn-default"
+        class="btn btn-grey btn-default"
         mwlCalendarToday
         [(viewDate)]="viewDate">
         Šiandien
       </div>
       <div
-        class="btn btn-default"
+        class="btn btn-grey btn-default"
         mwlCalendarNextView
         [view]="view"
         [(viewDate)]="viewDate">
@@ -29,13 +29,13 @@
   <div class="col-md-4">
     <div class="btn-group">
       <div
-        class="btn btn-default"
+        class="btn  btn-grey btn-default"
         (click)="view = 'month'"
         [class.active]="view === 'month'">
         Mėnesis
       </div>
       <div
-        class="btn btn-default"
+        class="btn btn-grey btn-default"
         (click)="view = 'week'"
         [class.active]="view === 'week'">
         Savaitė
