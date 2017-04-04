@@ -4,12 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { routes } from './app.router';
 import { AlertModule } from 'ng2-bootstrap';
+import { CalendarModule } from 'angular-calendar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { BuildWorkoutComponent } from './components/build-workout/build-workout.component';
 import { MyWorkoutsComponent } from './components/my-workouts/my-workouts.component';
 import { AddExerciseComponent } from './components/add-exercise/add-exercise.component';
 import { ViewExerciseComponent } from './components/view-exercise/view-exercise.component';
+import { WorkoutCalendarComponent } from './components/workout-calendar/workout-calendar.component';
 
 
 
@@ -19,14 +22,17 @@ import { ViewExerciseComponent } from './components/view-exercise/view-exercise.
     BuildWorkoutComponent,
     MyWorkoutsComponent,
     AddExerciseComponent,
-    ViewExerciseComponent
+    ViewExerciseComponent,
+    WorkoutCalendarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     routes,
-    AlertModule.forRoot()
+    AlertModule.forRoot(),
+    CalendarModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
