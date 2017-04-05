@@ -29,7 +29,14 @@ refreshList(){
   @Output()
   addEvent = new EventEmitter<Exercise>(); 
 
-  add(){
-    //this.addEvent.emit(this.exercises);
+  add(index : any){
+    this.addEvent.emit(this.exercises[index]);
+    this.remove(index);
+  }
+
+  remove(exerciseIndex : any){
+    if (exerciseIndex > -1) {
+      this.exercises.splice(exerciseIndex, 1);
+    }
   }
 }
