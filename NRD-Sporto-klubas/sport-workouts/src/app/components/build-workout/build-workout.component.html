@@ -3,11 +3,13 @@
     <div class="col-md-4">
       <h2>Mano rutina</h2>
       <div class="mano-rutina">
-        <div class="col-md-12">
+        <div *ngFor="let exercise of exercises" class="col-md-12">
+       
          <div class="thumbnail">
         <img alt="100%x200" data-src="holder.js/100%x200" src="assets/images/noimg.png" data-holder-rendered="true" style="height: 150px; width: 49%; display: inline-block;">
         <img alt="100%x200" data-src="holder.js/100%x200" src="assets/images/noimg.png" data-holder-rendered="true" style="height: 150px; width: 49%; display: inline-block;">
         <div class="caption">
+          <p>{{exercise.name}}</p>
           <p>Daugiau informacijos</p>
           <button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
         </div>

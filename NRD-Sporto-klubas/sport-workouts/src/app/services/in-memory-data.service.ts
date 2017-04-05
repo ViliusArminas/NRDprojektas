@@ -28,3 +28,27 @@ createDb(){
       }
     ];
 
+    const mockArrayExercises: Exercise[] =[
+      {
+        id: 1,
+        name: 'Prisitraukimai',
+        imageUrlFirst: 'assets/images/noimg.png',
+        imageUrlSecond: 'assets/images/noimg.png'
+      },
+      {
+        id: 2,
+        name: 'Pritupimai',
+
+        imageUrlFirst: 'assets/images/noimg.png',
+        imageUrlSecond: 'assets/images/noimg.png'
+      }
+      ,
+      {
+        id: 3,
+        name: 'Atsispaudimai',
+
+        imageUrlFirst: 'assets/images/noimg.png',
+        imageUrlSecond: 'assets/images/noimg.png'
+      }
+    ];
+

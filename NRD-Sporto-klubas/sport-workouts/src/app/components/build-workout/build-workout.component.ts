@@ -1,15 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-
+import {Exercise} from "app/models/exercise";
+import {DataServiceService} from "app/services/data-service.service";
 @Component({
   selector: 'app-build-workout',
   templateUrl: './build-workout.component.html',
-  styleUrls: ['./build-workout.component.css']
+  styleUrls: ['./build-workout.component.css'],
+  providers: [DataServiceService]
 })
 export class BuildWorkoutComponent implements OnInit {
 
-  constructor() { }
+  exercises: Exercise[];
+
+  constructor(private dataService: DataServiceService) { }
+
+  loadExerciseList(){
+    this.dataService.getExercises().then(arr => {
+      this.exercises = arr;
+    });
+  }
 
   ngOnInit() {
+    this.loadExerciseList();
   }
 
 }
