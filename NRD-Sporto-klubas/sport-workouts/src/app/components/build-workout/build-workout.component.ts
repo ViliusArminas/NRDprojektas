@@ -19,6 +19,12 @@ export class BuildWorkoutComponent implements OnInit {
     });
   }
 
+  remove(exerciseIndex : any){
+    if (exerciseIndex > -1) {
+    this.exercises.splice(exerciseIndex, 1);
+}
+  }
+
   ngOnInit() {
     this.loadExerciseList();
   }
