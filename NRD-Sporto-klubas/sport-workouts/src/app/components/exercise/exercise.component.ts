@@ -12,6 +12,7 @@ export class ExerciseComponent implements OnInit {
   exercises: Exercise[];
   
   isLoading: boolean = false;
+  isEmpty : boolean = false; 
 
   constructor(private dataService: DataServiceService) { }
 
@@ -31,7 +32,12 @@ refreshList(){
 
   add(index : any){
     this.addEvent.emit(this.exercises[index]);
-    this.remove(index);
+    //salinti arba disablint mygtuka kad antra kart nepridetu?
+    //jeigu pasalina is build-workout reiks grazint atgal i exercise sarasa?
+    this.remove(index);   
+    if (this.exercises.length <= 0){
+      this.isEmpty = true;
+    }
   }
 
   remove(exerciseIndex : any){
