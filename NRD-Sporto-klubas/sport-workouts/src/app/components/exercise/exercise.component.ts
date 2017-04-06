@@ -32,12 +32,14 @@ refreshList(){
 
   add(index : any){
     this.addEvent.emit(this.exercises[index]);
-    //salinti arba disablint mygtuka kad antra kart nepridetu?
-    //jeigu pasalina is build-workout reiks grazint atgal i exercise sarasa?
-    this.remove(index);   
+    //salinti arba disablint mygtuka kad antra kart nepridetu? Vilius - Gal palikt kad galetu det kad ir kelis kart ta pati elementa (pavyzdziui nori mynt dvirati ir pradzioj treniruotes ir pabaigoj :D)
+    //jeigu pasalina is build-workout reiks grazint atgal i exercise sarasa? Vilius - Jei paliekam, tada nebereiks ir grazint, tiesiog liks ten
+    
+    // Vilius - jei tinka ta logika, tuomet kaip suprantu uztenka tik situos uzkomentuot
+    /*this.remove(index);   
     if (this.exercises.length <= 0){
       this.isEmpty = true;
-    }
+    }*/
   }
 
   remove(exerciseIndex : any){
