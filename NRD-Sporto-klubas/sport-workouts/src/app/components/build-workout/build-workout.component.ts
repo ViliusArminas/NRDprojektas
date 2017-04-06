@@ -22,7 +22,11 @@ export class BuildWorkoutComponent implements OnInit {
   remove(exerciseIndex : any){
     if (exerciseIndex > -1) {
     this.exercises.splice(exerciseIndex, 1);
-}
+    }
+  }
+
+  addExercise(item : Exercise){
+    this.exercises.push(item);
   }
 
   ngOnInit() {
