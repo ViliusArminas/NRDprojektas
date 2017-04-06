@@ -56,12 +56,19 @@ namespace sport_workouts_web_api.Controllers
         */
 
         // Neveikia, nezinau kaip gettint turimus duomenis
-        public Exercise Get()
+        public ExerciseModel Get()
         {
             using (var ctx = new WorkoutContext())
-            {          
+            {
+                //neveikia del virtual metodu, negali paverst tu lauku i json ar kazkas panasaus
+                //pirmas budas
+                ctx.Configuration.ProxyCreationEnabled = false;
                 Exercise exer = ctx.Exercises.SingleOrDefault(ss => ss.ExerciseId == 1);
                 return exer;
+
+                //antras budas
+                //Exercise exer = ctx.Exercises.SingleOrDefault(ss => ss.ExerciseId == 1);
+                //return new ExerciseModel { ExerciseName = exer.ExerciseName, ExerciseId = exer.ExerciseId };
             }
         }
     }
