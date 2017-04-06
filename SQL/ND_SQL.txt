@@ -1,0 +1,96 @@
+DROP TABLE IF EXISTS Užsakymai;
+DROP TABLE IF EXISTS Vartotojai;
+DROP TABLE IF EXISTS Preke;
+
+
+-- Lentelių sukūrimas
+CREATE TABLE Vartotojai
+(ID INT NOT NULL PRIMARY KEY,
+Vardas VARCHAR(200) NOT NULL,
+Pavarde VARCHAR(200) NOT NULL,
+Gimimo_data DATETIME,
+Miestas VARCHAR (200)
+);
+
+CREATE TABLE Preke
+(ID INT NOT NULL PRIMARY KEY,
+Pavadinimas VARCHAR(200) NOT NULL,
+Kategorija VARCHAR(100) DEFAULT 'nenurodyta',
+Kaina INT NOT NULL 
+);
+
+CREATE TABLE Užsakymai
+(ID INT NOT NULL PRIMARY KEY,
+Vartotojo_ID INT NOT NULL, 
+Prekes_ID INT NOT NULL, 
+Kiekis INT NOT NULL,
+CONSTRAINT FK_Uzsakymo_vartotojas FOREIGN KEY (Vartotojo_ID) REFERENCES Vartotojai(ID),
+CONSTRAINT FK_Uzsakymo_preke FOREIGN KEY (Prekes_ID) REFERENCES Preke(ID)
+);
+-- --------------------------------------
+
+-- Duomenų įterpimas
+INSERT INTO Vartotojai (ID, Vardas, Pavarde, Gimimo_data, Miestas) VALUES (1, 'Tomas', 'Tomaitis','1990-10-02', 'Kaunas' );
+INSERT INTO Vartotojai (ID, Vardas, Pavarde, Gimimo_data, Miestas) VALUES (2, 'Jonas', 'Jonaitis','1993-07-12', 'Vilnius' );
+INSERT INTO Vartotojai (ID, Vardas, Pavarde, Gimimo_data, Miestas) VALUES (3, 'Vytas', 'Vytaitis','1988-09-02', 'Klaipeda' );
+INSERT INTO Vartotojai (ID, Vardas, Pavarde, Gimimo_data, Miestas) VALUES (4, 'Marija', 'Maritaite','1994-08-22', 'Kaunas' );
+INSERT INTO Vartotojai (ID, Vardas, Pavarde, Gimimo_data, Miestas) VALUES (5, 'Egle', 'Eglaite','1995-04-12', 'Vilnius' );
+INSERT INTO Vartotojai (ID, Vardas, Pavarde, Gimimo_data, Miestas) VALUES (6, 'Liepa', 'Liepaite','1986-05-24', 'Panevežys' );
+
+INSERT INTO Preke (ID, Pavadinimas, Kategorija, Kaina) VALUES (101, 'Megztinis', 'Apranga', 20 );
+INSERT INTO Preke (ID, Pavadinimas, Kategorija, Kaina) VALUES (102, 'Kamuolys', 'Sporto_prekes', 10 );
+INSERT INTO Preke (ID, Pavadinimas, Kategorija, Kaina) VALUES (103, 'Džinsai', 'Apranga', 40 );
+INSERT INTO Preke (ID, Pavadinimas, Kategorija, Kaina) VALUES (104, 'Kompiuteris', 'Komp-technika', 600 );
+INSERT INTO Preke (ID, Pavadinimas, Kategorija, Kaina) VALUES (105, 'Planšete', 'Komp-technika', 200 );
+INSERT INTO Preke (ID, Pavadinimas, Kategorija, Kaina) VALUES (106, 'Batai', 'Avalyne', 50 );
+
+INSERT INTO Užsakymai (ID, Vartotojo_ID, Prekes_ID, Kiekis) VALUES (22, 1, 101, 2 );
+INSERT INTO Užsakymai (ID, Vartotojo_ID, Prekes_ID, Kiekis) VALUES (23, 2, 102, 3 );
+INSERT INTO Užsakymai (ID, Vartotojo_ID, Prekes_ID, Kiekis) VALUES (24, 3, 103, 1 );
+INSERT INTO Užsakymai (ID, Vartotojo_ID, Prekes_ID, Kiekis) VALUES (25, 1, 104, 1 );
+INSERT INTO Užsakymai (ID, Vartotojo_ID, Prekes_ID, Kiekis) VALUES (26, 5, 105, 1 );
+INSERT INTO Užsakymai (ID, Vartotojo_ID, Prekes_ID, Kiekis) VALUES (27, 6, 104, 1 );
+-- ---------------------------------------------------
+
+-- Pridedamas check constraint užsakymų lentelei
+ALTER TABLE Užsakymai ADD CONSTRAINT CHK_Užsakymai CHECK (Užsakymai.Kiekis < 6);
+-- ---------------------------------------------------
+
+-- Testuojamas prekės lentelės default constraint'as
+INSERT INTO Preke (ID, Pavadinimas, Kaina) VALUES (107, 'Batai', 50 );
+-- ---------------------------------------------------
+
+-- And ir OR operacijų panaudojimas
+SELECT * FROM Užsakymai, Preke WHERE Užsakymai.Prekes_ID = Preke.ID
+AND (Kategorija = 'Avalyne' OR Kategorija = 'Apranga');
+-- ---------------------------------------------------
+
+-- IN ir <> panaudojimas
+SELECT * FROM Užsakymai WHERE Kiekis IN (1,2) AND Vartotojo_ID <> 1;
+-- ---------------------------------------------------
+
+-- Join operacijų panaudojimas
+SELECT * from Vartotojai v
+LEFT JOIN Užsakymai u ON u.Vartotojo_ID = v.ID
+RIGHT JOIN Preke p ON p.ID = u.Prekes_ID
+WHERE p.Kategorija = 'Apranga';
+-- ---------------------------------------------------
+
+-- GROUP BY užklausa panaudota sukurtai schemai
+SELECT COUNT(Užsakymai.ID), Vartotojo_ID
+FROM Užsakymai
+GROUP BY Vartotojo_ID;
+-- ---------------------------------------------------
+
+-- Duomenų trynimas
+ALTER TABLE  Užsakymai DROP FOREIGN KEY  FK_Uzsakymo_vartotojas ; 
+ALTER TABLE  Užsakymai DROP FOREIGN KEY  FK_Uzsakymo_preke ; 
+
+TRUNCATE TABLE  Vartotojai;
+TRUNCATE TABLE  Preke;
+TRUNCATE TABLE  Užsakymai;
+-- ---------------------------------------------------
+
+-- Lentelių trinimas
+DROP TABLE Užsakymai, Vartotojai, Preke;
+-- ---------------------------------------------------
