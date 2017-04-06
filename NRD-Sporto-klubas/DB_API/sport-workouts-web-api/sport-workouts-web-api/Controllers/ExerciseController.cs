@@ -23,7 +23,6 @@ namespace sport_workouts_web_api.Controllers
 
                 try
                 {
-
                     pp.ExerciseName = st.ExerciseName;
                     pp.ExerciseImageFirst = st.ExerciseImageFirst;
                     pp.ExerciseImageSecond = st.ExerciseImageSecond;
@@ -41,29 +40,40 @@ namespace sport_workouts_web_api.Controllers
             }
         }
 
-        // updates exercise
+        // Updates exercise, uses POST
         [Route("api/exercise/update")]
-        public string PostUpdate(Exercise updatedExercixe)
+        public IHttpActionResult PostUpdate(Exercise updatedExercixe)
         {
             using (var ctx = new WorkoutContext())
             {
-                ctx.Configuration.ProxyCreationEnabled = false;
                 Exercise exer = ctx.Exercises.SingleOrDefault(ss => ss.ExerciseId == updatedExercixe.ExerciseId);
                 if (exer != null)
                 {
-                    exer.ExerciseImageFirst = updatedExercixe.ExerciseImageFirst;
-                    exer.ExerciseImageSecond = updatedExercixe.ExerciseImageSecond;
-                    exer.ExerciseName = updatedExercixe.ExerciseName;
-                    ctx.SaveChanges();
-                }         
+                    try
+                    {
+                        exer.ExerciseImageFirst = updatedExercixe.ExerciseImageFirst;
+                        exer.ExerciseImageSecond = updatedExercixe.ExerciseImageSecond;
+                        exer.ExerciseName = updatedExercixe.ExerciseName;
+                        ctx.SaveChanges();
+                    }
+                    catch (Exception Ex)
+                    {
+                        return NotFound();
+                    }
+
+                }
+                else
+                {
+                    NotFound();
+                }    
             }
 
-            return "success";
+            return Ok("Updated item.");
         }
 
-        // deletes exercise
+        // Delete exercise, uses GET
         [Route("api/exercise/delete/{id}")]
-        public string GetDelete(int id)
+        public IHttpActionResult GetDelete(int id)
         {
             using (var ctx = new WorkoutContext())
             {
@@ -73,12 +83,12 @@ namespace sport_workouts_web_api.Controllers
                 ctx.SaveChanges();
             }
 
-            return "success";
+            return Ok("Deleted item.");
         }
 
 
 
-        // get all exercises
+        // Get all exercises, uses GET
         public List<Exercise> Get()
         {
             using (var ctx = new WorkoutContext())
@@ -91,7 +101,7 @@ namespace sport_workouts_web_api.Controllers
         }
 
 
-        // get exercise
+        // Get exercise, , uses GET
         public ExerciseModel Get(int id)
         {
             using (var ctx = new WorkoutContext())
