@@ -12,6 +12,7 @@ export class ViewExerciseComponent implements OnInit {
 exercise: Exercise;
 exercises: Exercise[];
 isLoading: boolean = false;
+editingExercise : boolean = false;
 
   constructor(private dataService: DataServiceService) { }
 
@@ -27,12 +28,29 @@ isLoading: boolean = false;
     });
   }
 
-   saveExercise(exercise: Exercise){
-    this.exercise = null;
+   saveExercise(newExercise: Exercise){
+    if(newExercise == null) return;
 
-    if(exercise == null) return;
-    this.dataService.addExercise(exercise);
-    
+    //update exercise in DB
+    if (this.editingExercise){
+      this.dataService.updateExercise(newExercise);
+    }//add new  exercise to DB
+    else{ 
+      this.dataService.addExercise(newExercise);
+    }
+
+    this.editingExercise = false;
+    this.exercise = null;
+    this.refreshList();
+  }
+
+  editExercise(selected : Exercise){
+    this.editingExercise = true;
+    this.exercise = selected;
+  }
+
+  deleteExercise(selected : Exercise){
+    this.dataService.removeExercise(selected);
     this.refreshList();
   }
 

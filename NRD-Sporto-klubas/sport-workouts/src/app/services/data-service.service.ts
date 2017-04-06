@@ -26,4 +26,17 @@ export class DataServiceService {
         return response.json().data as Exercise;
       });    
   }  
+
+  updateExercise(exercise: Exercise): Promise<void> {
+    return this.http.put('/api/exercises/' + exercise.id, exercise)
+      .toPromise()
+      .then(() => null);
+  }  
+
+  removeExercise(exercise : Exercise): Promise<void> {
+    return this.http.delete('/api/exercises/' + exercise.id)
+     .toPromise()
+     .then( () => null);
+  }
+
 }

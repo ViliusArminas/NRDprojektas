@@ -11,7 +11,8 @@
         <div class="caption">
           <p>{{i.name}}</p>
           <p>Daugiau informacijos</p>
-          <button class="btn btn-grey btn-default"><strong>Redaguoti</strong></button>
+          <button (click)="editExercise(i)" class="btn btn-grey btn-default"><strong>Redaguoti</strong></button>
+          <button (click)="deleteExercise(i)" class="btn pull-right btn-warning"><strong>Šalinti</strong></button>
         </div>
       </div>
     </div>
