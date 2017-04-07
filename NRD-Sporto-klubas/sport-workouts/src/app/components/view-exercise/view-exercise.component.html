@@ -6,10 +6,10 @@
   <div *ngIf="!isLoading">
     <div *ngFor="let i of exercises" class="col-xs-6">
       <div class="thumbnail">
-        <img alt="100%x200" data-src="holder.js/100%x200" src="{{i.imageUrlFirst}}" data-holder-rendered="true" style="height: 150px; width: 49%; display: inline-block;">
-        <img alt="100%x200" data-src="holder.js/100%x200" src="{{i.imageUrlSecond}}" data-holder-rendered="true" style="height: 150px; width: 49%; display: inline-block;">
+        <img alt="100%x200" data-src="holder.js/100%x200" src="{{i.ExerciseImageFirst}}" data-holder-rendered="true" style="height: 150px; width: 49%; display: inline-block;">
+        <img alt="100%x200" data-src="holder.js/100%x200" src="{{i.ExerciseImageSecond}}" data-holder-rendered="true" style="height: 150px; width: 49%; display: inline-block;">
         <div class="caption">
-          <p>{{i.name}}</p>
+          <p>{{i.ExerciseName}}</p>
           <p>Daugiau informacijos</p>
           <button (click)="editExercise(i)" class="btn btn-grey btn-default"><strong>Redaguoti</strong></button>
           <button (click)="deleteExercise(i)" class="btn pull-right btn-warning"><strong>Šalinti</strong></button>

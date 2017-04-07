@@ -11,11 +11,12 @@ export class DataServiceService {
   constructor(private http: Http) { }
 
    getExercises(): Promise<Exercise[]> {
-    return this.http.get('/api/exercises')
+    return this.http.get('http://localhost:49973/api/exer')
       .delay(this.delayTimeSec)
       .toPromise()
       .then(response => {
-        return response.json().data as Exercise[];
+        console.log(response);
+        return response.json() as Exercise[];
       });    
   }
 
@@ -28,13 +29,13 @@ export class DataServiceService {
   }  
 
   updateExercise(exercise: Exercise): Promise<void> {
-    return this.http.put('/api/exercises/' + exercise.id, exercise)
+    return this.http.put('/api/exercises/' + exercise.exerciseId, exercise)
       .toPromise()
       .then(() => null);
   }  
 
   removeExercise(exercise : Exercise): Promise<void> {
-    return this.http.delete('/api/exercises/' + exercise.id)
+    return this.http.delete('/api/exercises/' + exercise.exerciseId)
      .toPromise()
      .then( () => null);
   }

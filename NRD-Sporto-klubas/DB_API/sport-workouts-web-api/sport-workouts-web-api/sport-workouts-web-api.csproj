@@ -84,11 +84,19 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
@@ -238,14 +246,12 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Classes\Exercise.cs" />
-    <Compile Include="Classes\ExerciseModel.cs" />
     <Compile Include="Classes\MuscleGroup.cs" />
     <Compile Include="Classes\Workout.cs" />
     <Compile Include="Classes\WorkoutDay.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ExerciseController.cs" />
+    <Compile Include="Controllers\ExercisesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MuscleGroupController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\WorkoutsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -255,9 +261,14 @@
     <Compile Include="Migrations\201704071239029_InitialCreate.Designer.cs">
       <DependentUpon>201704071239029_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704071415568_bandmas.cs" />
+    <Compile Include="Migrations\201704071415568_bandmas.Designer.cs">
+      <DependentUpon>201704071415568_bandmas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ExercisesGetDto.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\WorkoutGetDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -337,6 +348,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201704071239029_InitialCreate.resx">
       <DependentUpon>201704071239029_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704071415568_bandmas.resx">
+      <DependentUpon>201704071415568_bandmas.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

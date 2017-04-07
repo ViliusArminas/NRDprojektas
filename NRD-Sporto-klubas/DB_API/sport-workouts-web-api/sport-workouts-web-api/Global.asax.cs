@@ -30,11 +30,11 @@ namespace sport_workouts_web_api
             config.Formatters.JsonFormatter.UseDataContractJsonSerializer = false;
 
             Mapper.Initialize(cfg => {
-                cfg.CreateMap<Workout, WorkoutGetDto>()
-                .ForMember(m => m.WorkoutId, s => s.Ignore())
-                .ForMember(m => m.WorkoutName, s => s.MapFrom(d => $"{{d.WorkoutName}}"));
-
-               // cfg.CreateMap<Exercise, ExerciseGetDto>();
+                /* cfg.CreateMap<Workout, WorkoutGetDto>()
+                 .ForMember(m => m.WorkoutId, s => s.Ignore())
+                 .ForMember(m => m.WorkoutName, s => s.MapFrom(d => $"kkkk: {d.WorkoutName}"));*/
+                cfg.CreateMap<Workout, WorkoutGetDto>();
+                cfg.CreateMap<Exercise, ExercisesGetDto>();
             });
             //or
           //  var config = new MapperConfiguration(cfg => cfg.CreateMap<Order, OrderDto>());

@@ -39,7 +39,9 @@ import { ExerciseGroupsComponent } from './components/exercise-groups/exercise-g
     AlertModule.forRoot(),
     CalendarModule.forRoot(),
     BrowserAnimationsModule,
-     InMemoryWebApiModule.forRoot(InMemoryDataService)
+     InMemoryWebApiModule.forRoot(InMemoryDataService, {
+       passThruUnknownUrl : true
+     })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
 export class Exercise {
-  public id: number;
-  public name: string;  
-  public imageUrlFirst: string;
-  public imageUrlSecond: string;
+  public exerciseId: number;
+  public exerciseName: string;  
+  public exerciseImageFirst: string;
+  public exerciseImageSecond: string;
 }

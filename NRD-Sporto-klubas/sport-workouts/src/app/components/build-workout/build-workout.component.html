@@ -6,10 +6,10 @@
         <div *ngFor="let exercise of exercises; let i = index" class="col-md-12">
        
          <div class="thumbnail">
-        <img alt="100%x200" data-src="holder.js/100%x200" src="{{exercise.imageUrlFirst}}" data-holder-rendered="true" style="height: 150px; width: 49%; display: inline-block;">
-        <img alt="100%x200" data-src="holder.js/100%x200" src="{{exercise.imageUrlFirst}}" data-holder-rendered="true" style="height: 150px; width: 49%; display: inline-block;">
+        <img alt="100%x200" data-src="holder.js/100%x200" src="{{exercise.exerciseImageFirst}}" data-holder-rendered="true" style="height: 150px; width: 49%; display: inline-block;">
+        <img alt="100%x200" data-src="holder.js/100%x200" src="{{exercise.exerciseImageSecond}}" data-holder-rendered="true" style="height: 150px; width: 49%; display: inline-block;">
         <div class="caption">
-          <p>{{exercise.name}}</p>
+          <p>{{exercise.exerciseName}}</p>
           <p>Daugiau informacijos</p>
           <button (click)="remove(i)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
         </div>

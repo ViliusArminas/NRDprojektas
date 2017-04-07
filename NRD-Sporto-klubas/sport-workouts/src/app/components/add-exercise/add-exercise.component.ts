@@ -20,11 +20,11 @@ export class AddExerciseComponent implements OnInit {
   saveEvent = new EventEmitter<Exercise>();
 
   save(){
-    if (!this.exerciseDetails.imageUrlFirst){
-      this.exerciseDetails.imageUrlFirst =  "assets/images/noimg.png";
+    if (!this.exerciseDetails.exerciseImageFirst){
+      this.exerciseDetails.exerciseImageFirst =  "assets/images/noimg.png";
     }
-    if (!this.exerciseDetails.imageUrlSecond){
-      this.exerciseDetails.imageUrlSecond =  "assets/images/noimg.png";
+    if (!this.exerciseDetails.exerciseImageSecond){
+      this.exerciseDetails.exerciseImageSecond =  "assets/images/noimg.png";
     }
     this.saveEvent.emit(this.exerciseDetails);
   }

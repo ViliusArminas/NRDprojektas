@@ -272,3 +272,7 @@ C:\Users\Vilius\Desktop\Jquery\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-worko
 C:\Users\Vilius\Desktop\Jquery\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-workouts-web-api\sport-workouts-web-api\obj\Debug\sport-workouts-web-api.csproj.GenerateResource.Cache
 C:\Users\Vilius\Desktop\Jquery\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-workouts-web-api\sport-workouts-web-api\bin\AutoMapper.dll
 C:\Users\Vilius\Desktop\Jquery\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-workouts-web-api\sport-workouts-web-api\bin\AutoMapper.xml
+C:\Users\Vilius\Desktop\Jquery\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-workouts-web-api\sport-workouts-web-api\obj\Debug\sport_workouts_web_api.Migrations.bandmas.resources
+C:\Users\Vilius\Desktop\Jquery\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-workouts-web-api\sport-workouts-web-api\bin\System.Web.Cors.dll
+C:\Users\Vilius\Desktop\Jquery\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-workouts-web-api\sport-workouts-web-api\bin\System.Web.Http.Cors.dll
+C:\Users\Vilius\Desktop\Jquery\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-workouts-web-api\sport-workouts-web-api\bin\System.Web.Http.Cors.xml

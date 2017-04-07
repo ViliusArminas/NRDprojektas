@@ -10,9 +10,11 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using sport_workouts_web_api.Classes;
 using sport_workouts_web_api.Models;
+using System.Web.Http.Cors;
 
 namespace sport_workouts_web_api.Controllers
 {
+    [EnableCorsAttribute("http://localhost:4200","*","*")]
     public class WorkoutsController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();

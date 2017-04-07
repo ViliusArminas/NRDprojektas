@@ -14,41 +14,38 @@ createDb(){
 }
   const cArrayExercises: Exercise[] =[
       {
-        id: 1,
-        name: 'Štangos stūmimas',
-        imageUrlFirst: 'assets/images/noimg.png',
-        imageUrlSecond: 'assets/images/noimg.png'
+        exerciseId: 1,
+        exerciseName: 'Štangos stūmimas',
+        exerciseImageFirst: 'assets/images/noimg.png',
+        exerciseImageSecond: 'assets/images/noimg.png'
       },
       {
-        id: 2,
-        name: 'Pritupimai',
-
-        imageUrlFirst: 'assets/images/noimg.png',
-        imageUrlSecond: 'assets/images/noimg.png'
+        exerciseId: 2,
+        exerciseName: 'Pritupimai',
+        exerciseImageFirst: 'assets/images/noimg.png',
+        exerciseImageSecond: 'assets/images/noimg.png'
       }
     ];
 
     const mockArrayExercises: Exercise[] =[
       {
-        id: 1,
-        name: 'Prisitraukimai',
-        imageUrlFirst: 'assets/images/noimg.png',
-        imageUrlSecond: 'assets/images/noimg.png'
+        exerciseId: 1,
+        exerciseName: 'Prisitraukimai',
+        exerciseImageFirst: 'assets/images/noimg.png',
+        exerciseImageSecond: 'assets/images/noimg.png'
       },
       {
-        id: 2,
-        name: 'Pritupimai',
-
-        imageUrlFirst: 'assets/images/noimg.png',
-        imageUrlSecond: 'assets/images/noimg.png'
+        exerciseId: 2,
+        exerciseName: 'Pritupimai',
+        exerciseImageFirst: 'assets/images/noimg.png',
+        exerciseImageSecond: 'assets/images/noimg.png'
       }
       ,
       {
-        id: 3,
-        name: 'Atsispaudimai',
-
-        imageUrlFirst: 'assets/images/noimg.png',
-        imageUrlSecond: 'assets/images/noimg.png'
+        exerciseId: 3,
+        exerciseName: 'Atsispaudimai',
+        exerciseImageFirst: 'assets/images/noimg.png',
+        exerciseImageSecond: 'assets/images/noimg.png'
       }
     ];
 
