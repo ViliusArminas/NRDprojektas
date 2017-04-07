@@ -1,4 +1,5 @@
 ﻿using sport_workouts_web_api.Classes;
+using sport_workouts_web_api.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace sport_workouts_web_api.Controllers
         [Route("api/muscle-group")]
         public IHttpActionResult Post(MuscleGroup mg)
         {
-            using (var ctx = new WorkoutContext())
+            using (var ctx = new ApplicationDbContext())
             {
                 MuscleGroup newMuscleGroup = new MuscleGroup();
                 try
@@ -37,7 +38,7 @@ namespace sport_workouts_web_api.Controllers
         [Route("api/muscle-group")]
         public List<MuscleGroup> Get()
         {
-            using (var ctx = new WorkoutContext())
+            using (var ctx = new ApplicationDbContext())
             {
                 ctx.Configuration.ProxyCreationEnabled = false;
                 List<MuscleGroup> muscleGroups = new List<MuscleGroup>();
@@ -50,7 +51,7 @@ namespace sport_workouts_web_api.Controllers
         [Route("api/muscle-group/{id}")]
         public MuscleGroup Get(int id)
         {
-            using (var ctx = new WorkoutContext())
+            using (var ctx = new ApplicationDbContext())
             {
                 ctx.Configuration.ProxyCreationEnabled = false;
                 MuscleGroup group = ctx.MuscleGroups.SingleOrDefault(m => m.MuscleGroupId == id);
@@ -62,7 +63,7 @@ namespace sport_workouts_web_api.Controllers
         [Route("api/muscle-group/delete/{id}")]
         public IHttpActionResult GetDelete(int id)
         {
-            using (var ctx = new WorkoutContext())
+            using (var ctx = new ApplicationDbContext())
             {
                 ctx.Configuration.ProxyCreationEnabled = false;
                 MuscleGroup group = ctx.MuscleGroups.SingleOrDefault((m => m.MuscleGroupId == id));

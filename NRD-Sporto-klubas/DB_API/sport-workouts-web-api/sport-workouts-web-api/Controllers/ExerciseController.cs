@@ -1,4 +1,5 @@
 ﻿using sport_workouts_web_api.Classes;
+using sport_workouts_web_api.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace sport_workouts_web_api.Controllers
         // Post testavimo metodas. Priima per body paduodamus exercise parametrus
         public IHttpActionResult Post(Exercise st)
         {
-            using (var ctx = new WorkoutContext())
+            using (var ctx = new ApplicationDbContext())
             {
                 Exercise pp = new Exercise();
 
@@ -44,7 +45,7 @@ namespace sport_workouts_web_api.Controllers
         [Route("api/exercise/update")]
         public IHttpActionResult PostUpdate(Exercise updatedExercixe)
         {
-            using (var ctx = new WorkoutContext())
+            using (var ctx = new ApplicationDbContext())
             {
                 Exercise exer = ctx.Exercises.SingleOrDefault(ss => ss.ExerciseId == updatedExercixe.ExerciseId);
                 if (exer != null)
@@ -75,7 +76,7 @@ namespace sport_workouts_web_api.Controllers
         [Route("api/exercise/delete/{id}")]
         public IHttpActionResult GetDelete(int id)
         {
-            using (var ctx = new WorkoutContext())
+            using (var ctx = new ApplicationDbContext())
             {
                 ctx.Configuration.ProxyCreationEnabled = false;
                 Exercise exer = ctx.Exercises.SingleOrDefault(ss => ss.ExerciseId == id);
@@ -91,7 +92,7 @@ namespace sport_workouts_web_api.Controllers
         // Get all exercises, uses GET
         public List<Exercise> Get()
         {
-            using (var ctx = new WorkoutContext())
+            using (var ctx = new ApplicationDbContext())
             {
                 ctx.Configuration.ProxyCreationEnabled = false;
                 List<Exercise> exercises = new List<Exercise>();
@@ -104,7 +105,7 @@ namespace sport_workouts_web_api.Controllers
         // Get exercise, , uses GET
         public ExerciseModel Get(int id)
         {
-            using (var ctx = new WorkoutContext())
+            using (var ctx = new ApplicationDbContext())
             {
                 //neveikia del virtual metodu, negali paverst tu lauku i json ar kazkas panasaus
                 //pirmas budas

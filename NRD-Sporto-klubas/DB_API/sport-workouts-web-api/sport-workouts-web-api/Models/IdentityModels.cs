@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+using sport_workouts_web_api.Classes;
+using System.Data.Entity;
 
 namespace sport_workouts_web_api.Models
 {
@@ -29,5 +31,10 @@ namespace sport_workouts_web_api.Models
         {
             return new ApplicationDbContext();
         }
+        public DbSet<Exercise> Exercises { get; set; }
+        public DbSet<Workout> Workouts { get; set; }
+        public DbSet<WorkoutDay> WorkoutDays { get; set; }
+        public DbSet<MuscleGroup> MuscleGroups { get; set; }
+
     }
 }
