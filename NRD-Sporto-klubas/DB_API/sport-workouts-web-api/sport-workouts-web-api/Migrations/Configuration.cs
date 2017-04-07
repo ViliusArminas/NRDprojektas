@@ -17,22 +17,48 @@ namespace sport_workouts_web_api.Migrations
         protected override void Seed(sport_workouts_web_api.Models.ApplicationDbContext context)
         {
 
-            if (1 != 0)
-           {
-                /* context.Workouts.Add(new Workout() { WorkoutId = 1, WorkoutName = "Workautas1" });
-                 context.Workouts.Add(new Workout() { WorkoutId = 2, WorkoutName = "Workautas2" });
-                 context.Workouts.Add(new Workout() { WorkoutId = 2, WorkoutName = "Workautas3" });*/
-                Exercise exer1 = new Exercise() { ExerciseId = 4, ExerciseName = "Exersicas4" };
-                Exercise exer2 = new Exercise() { ExerciseId = 5, ExerciseName = "Exersicas5" };
-                Workout work3 = new Workout() { WorkoutId = 3, WorkoutName = "Workautas3" };
-
-                exer1.Workouts.Add(work3);
-                exer2.Workouts.Add(work3);
-
-                work3.Exercises.Add(exer1);
-                work3.Exercises.Add(exer2);
-                context.Workouts.Add(work3);
+            if (!context.MuscleGroups.Any())
+            {
+                context.MuscleGroups.AddOrUpdate(
+                new MuscleGroup { MuscleGroupName = "Rankø" },
+                new MuscleGroup { MuscleGroupName = "Kojø" },
+                new MuscleGroup { MuscleGroupName = "Nugaros" },
+                new MuscleGroup { MuscleGroupName = "Pilvo" }
+             );
             }
+
+            if (!context.Exercises.Any())
+            {
+                 /*context.Workouts.Add(new Workout() {  WorkoutName = "Workautas1" });
+                 context.Workouts.Add(new Workout() {  WorkoutName = "Workautas2" });
+                 context.Workouts.Add(new Workout() {  WorkoutName = "Workautas3" });*/
+
+                Exercise exer1 = new Exercise() {  ExerciseName = "Pritûpimai" };
+                Exercise exer2 = new Exercise() {  ExerciseName = "Atsispaudimai" };
+                Exercise exer3 = new Exercise() { ExerciseName = "Atsilenkimai" };
+                Exercise exer4 = new Exercise() { ExerciseName = "Prisitraukimai" };
+
+                Workout work1 = new Workout() {   WorkoutName = "Workout1" };
+                Workout work2 = new Workout() { WorkoutName = "Workout2" };
+
+                exer1.Workouts.Add(work1);
+                exer2.Workouts.Add(work1);
+
+                work1.Exercises.Add(exer1);
+                work1.Exercises.Add(exer2);
+                context.Workouts.Add(work1);
+
+
+                exer3.Workouts.Add(work2);
+                exer4.Workouts.Add(work2);
+
+                work2.Exercises.Add(exer3);
+                work2.Exercises.Add(exer4);
+                context.Workouts.Add(work2);
+
+            }
+
+
               /*  if (!context.Exercises.Any())
                 {
 

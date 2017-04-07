@@ -2,22 +2,9 @@
   <div class="row">
     <div class="col-md-12">
       <div class="btn-group btn-group-justified" role="group">
-        <div class="btn-group" role="group">
-          <a href="#" class="btn btn-grey btn-default">Nugaros</a>
+        <div class="btn-group" role="group" *ngFor="let group of groups">
+          <a href="#" class="btn btn-grey btn-default">{{group.muscleGroupName}}</a>
         </div>
-        <div class="btn-group" role="group">
-          <a href="#" class="btn btn-grey btn-default">Pilvo</a>
-        </div>
-        <div class="btn-group" role="group">
-          <a href="#" class="btn btn-grey btn-default">Pečių</a>
-        </div>
-        <div class="btn-group" role="group">
-          <a href="#" class="btn  btn-grey btn-default">Krūtinės</a>
-        </div>
-        <div class="btn-group" role="group">
-          <a href="#" class="btn btn-grey btn-default">Kojų</a>
-        </div>
-
       </div>
     </div>
   </div>

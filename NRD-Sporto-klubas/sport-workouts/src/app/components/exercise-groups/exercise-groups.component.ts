@@ -1,15 +1,27 @@
 import { Component, OnInit } from '@angular/core';
+import { MuscleGroup } from "app/models/muscle-group";
+import { DataServiceService } from "app/services/data-service.service";
 
 @Component({
   selector: 'app-exercise-groups',
   templateUrl: './exercise-groups.component.html',
-  styleUrls: ['./exercise-groups.component.css']
+  styleUrls: ['./exercise-groups.component.css'],
+  providers: [DataServiceService]
 })
 export class ExerciseGroupsComponent implements OnInit {
 
-  constructor() { }
+  groups : MuscleGroup[];
+
+  constructor(private dataService : DataServiceService) { }
+
+  loadMuscleGroupList(){
+    this.dataService.getMuscleGroups().then(list => {
+      this.groups = list;
+    });
+  }
 
   ngOnInit() {
+    this.loadMuscleGroupList();
   }
 
 }

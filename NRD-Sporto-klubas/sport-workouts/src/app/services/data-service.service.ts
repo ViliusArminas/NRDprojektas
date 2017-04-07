@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Exercise } from "app/models/exercise";
+import {MuscleGroup} from 'app/models/muscle-group';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
@@ -9,6 +10,8 @@ export class DataServiceService {
   delayTimeSec: number = 1000;
 
   constructor(private http: Http) { }
+
+  //exercise service
 
    getExercises(): Promise<Exercise[]> {
     return this.http.get('http://localhost:49973/api/exer')
@@ -39,5 +42,18 @@ export class DataServiceService {
      .toPromise()
      .then( () => null);
   }
+
+  //----------------------------------------------------------------------
+  // muscle group service
+
+  getMuscleGroups(): Promise<MuscleGroup[]> {
+    return this.http.get('http://localhost:49973/api/musclegroups')
+      .toPromise()
+      .then(response => {
+        console.log(response);
+        return response.json() as MuscleGroup[];
+      });    
+  }
+  
 
 }
