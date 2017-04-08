@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {Exercise} from "app/models/exercise";
-import {DataServiceService} from "app/services/data-service.service";
+import { DataServiceService } from "app/services/data-service.service";
+import { MuscleGroup } from "app/models/muscle-group";
+import {ExerciseComponent} from 'app/components/exercise/exercise.component';
+
 @Component({
   selector: 'app-build-workout',
   templateUrl: './build-workout.component.html',
@@ -30,8 +33,15 @@ export class BuildWorkoutComponent implements OnInit {
     this.exercises.push(item);
   }
 
+  selectMuscleGroup(selected : MuscleGroup){
+    this.child.transferInfo(selected);
+  }
+
   ngOnInit() {
     this.loadExerciseList();
   }
+
+  @ViewChild(ExerciseComponent)
+  private child: ExerciseComponent;
 
 }

@@ -281,10 +281,7 @@ C:\Users\Gytis\Documents\GitHub\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-work
 C:\Users\Gytis\Documents\GitHub\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-workouts-web-api\sport-workouts-web-api\bin\System.Web.Http.Cors.dll
 C:\Users\Gytis\Documents\GitHub\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-workouts-web-api\sport-workouts-web-api\bin\AutoMapper.xml
 C:\Users\Gytis\Documents\GitHub\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-workouts-web-api\sport-workouts-web-api\bin\System.Web.Http.Cors.xml
-C:\Users\Gytis\Documents\GitHub\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-workouts-web-api\sport-workouts-web-api\obj\Debug\sport_workouts_web_api.Migrations.InitialCreate.resources
-C:\Users\Gytis\Documents\GitHub\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-workouts-web-api\sport-workouts-web-api\obj\Debug\sport_workouts_web_api.Migrations.bandmas.resources
 C:\Users\Gytis\Documents\GitHub\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-workouts-web-api\sport-workouts-web-api\obj\Debug\sport-workouts-web-api.csproj.GenerateResource.Cache
-C:\Users\Gytis\Documents\GitHub\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-workouts-web-api\sport-workouts-web-api\obj\Debug\sport_workouts_web_api.Migrations.myMigration.resources
 C:\Users\Vilius\Desktop\AkademijosGit\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-workouts-web-api\sport-workouts-web-api\bin\ApplicationInsights.config
 C:\Users\Vilius\Desktop\AkademijosGit\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-workouts-web-api\sport-workouts-web-api\bin\roslyn\csc.exe
 C:\Users\Vilius\Desktop\AkademijosGit\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-workouts-web-api\sport-workouts-web-api\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -382,3 +379,4 @@ C:\Users\Vilius\Desktop\AkademijosGit\NRDprojektas\NRD-Sporto-klubas\DB_API\spor
 C:\Users\Vilius\Desktop\AkademijosGit\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-workouts-web-api\sport-workouts-web-api\obj\Debug\sport-workouts-web-api.pdb
 C:\Users\Vilius\Desktop\AkademijosGit\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-workouts-web-api\sport-workouts-web-api\obj\Debug\sport_workouts_web_api.Migrations.newDb.resources
 C:\Users\Vilius\Desktop\AkademijosGit\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-workouts-web-api\sport-workouts-web-api\obj\Debug\sport-workouts-web-api.csproj.GenerateResource.Cache
+C:\Users\Gytis\Documents\GitHub\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-workouts-web-api\sport-workouts-web-api\obj\Debug\sport_workouts_web_api.Migrations.newDb.resources

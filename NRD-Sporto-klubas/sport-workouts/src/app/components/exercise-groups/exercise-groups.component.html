@@ -3,7 +3,7 @@
     <div class="col-md-12">
       <div class="btn-group btn-group-justified" role="group">
         <div class="btn-group" role="group" *ngFor="let group of groups">
-          <a href="#" class="btn btn-grey btn-default">{{group.muscleGroupName}}</a>
+          <button (click)="select(group)"  class="btn btn-grey btn-default">{{group.muscleGroupName}}</button>
         </div>
       </div>
     </div>

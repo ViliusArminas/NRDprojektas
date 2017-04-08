@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Exercise } from "app/models/exercise";
 import { DataServiceService } from "app/services/data-service.service";
+import { MuscleGroup } from "app/models/muscle-group";
 
 @Component({
   selector: 'app-view-exercise',
@@ -14,19 +15,34 @@ exercises: Exercise[];
 isLoading: boolean = false;
 editingExercise : boolean = false;
 
+selectedMuscleGroup : MuscleGroup = null;
+
   constructor(private dataService: DataServiceService) { }
 
   ngOnInit() {
-     this.refreshList();
+     this.loadList();
+  }
+
+  loadList(){
+    this.isLoading = true;
+    this.dataService.getMuscleGroups().then(c => {
+       this.selectedMuscleGroup = c[0];
+       this.loadExercises(this.selectedMuscleGroup.muscleGroupId);
+    });
+  }
+
+  loadExercises(id : number){
+    this.dataService.getExercisesByMuscleGroup(id).then(c => {
+          this.exercises = c;
+          this.isLoading = false;
+    })
   }
 
   refreshList(){
-    this.isLoading = true;
-    this.dataService.getExercises().then(c => {
-      this.exercises = c;
-      this.isLoading = false;
-    });
-  }
+      this.isLoading = true;
+      this.loadExercises(this.selectedMuscleGroup.muscleGroupId);
+    }
+
 
    saveExercise(newExercise: Exercise){
     if(newExercise == null) return;
@@ -57,5 +73,11 @@ editingExercise : boolean = false;
   addNewExercise(){
     this.exercise = new Exercise();
   }
+
+  selectMuscleGroup(selected : MuscleGroup){
+    this.selectedMuscleGroup = selected;
+    this.refreshList();
+  }
+
 
 }

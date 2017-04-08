@@ -31,6 +31,29 @@ namespace sport_workouts_web_api.Controllers
             return result;
         }
 
+        [Route("api/exer/{groupId}")]
+        public List<ExercisesGetDto> GetExercisesByMuscleGroup(int groupId)
+        {
+            var list = db.Exercises.ToList();
+
+            var resList = new List<ExercisesGetDto>();
+            var result = AutoMapper.Mapper.Map<List<ExercisesGetDto>>(list);
+
+            var filteredList = new List<ExercisesGetDto>();
+
+            foreach (var i in result)
+            {
+                ICollection<MuscleGroupsGetDto> lst = i.MuscleGroups;
+                foreach (var j in lst)
+                {
+                    if (j.MuscleGroupId == groupId)
+                        filteredList.Add(i);
+                }
+            }
+
+            return filteredList;
+        }
+
         // GET: api/Exercises/5
         [ResponseType(typeof(Exercise))]
         public IHttpActionResult GetExercise(int id)

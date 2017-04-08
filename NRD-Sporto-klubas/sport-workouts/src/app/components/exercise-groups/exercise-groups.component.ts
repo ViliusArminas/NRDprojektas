@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MuscleGroup } from "app/models/muscle-group";
 import { DataServiceService } from "app/services/data-service.service";
 
@@ -18,6 +18,14 @@ export class ExerciseGroupsComponent implements OnInit {
     this.dataService.getMuscleGroups().then(list => {
       this.groups = list;
     });
+  }
+
+
+  @Output()
+  selectEvent = new EventEmitter<MuscleGroup>();
+
+  select(selected : MuscleGroup){
+    this.selectEvent.emit(selected);
   }
 
   ngOnInit() {

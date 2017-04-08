@@ -1,6 +1,7 @@
 import { Component, OnInit, Output,  EventEmitter} from '@angular/core';
 import { DataServiceService } from "app/services/data-service.service";
 import { Exercise } from "app/models/exercise";
+import { MuscleGroup } from "app/models/muscle-group";
 
 @Component({
   selector: 'app-exercise',
@@ -10,6 +11,7 @@ import { Exercise } from "app/models/exercise";
 })
 export class ExerciseComponent implements OnInit {
   exercises: Exercise[];
+  selectedMuscleGroup : MuscleGroup = null;
   
   isLoading: boolean = false;
   isEmpty : boolean = false; 
@@ -17,29 +19,34 @@ export class ExerciseComponent implements OnInit {
   constructor(private dataService: DataServiceService) { }
 
   ngOnInit() {
-    this.refreshList();
+    this.loadList();
   }
-refreshList(){
+
+  loadList(){
     this.isLoading = true;
-    this.dataService.getExercises().then(c => {
-      this.exercises = c;
-      this.isLoading = false;
+    this.dataService.getMuscleGroups().then(c => {
+       this.selectedMuscleGroup = c[0];
+       this.loadExercises(this.selectedMuscleGroup.muscleGroupId);
     });
   }
+
+  loadExercises(id : number){
+    this.dataService.getExercisesByMuscleGroup(id).then(c => {
+          this.exercises = c;
+          this.isLoading = false;
+    })
+  }
+
+  refreshList(){
+      this.isLoading = true;
+      this.loadExercises(this.selectedMuscleGroup.muscleGroupId);
+    }
 
   @Output()
   addEvent = new EventEmitter<Exercise>(); 
 
   add(index : any){
     this.addEvent.emit(this.exercises[index]);
-    //salinti arba disablint mygtuka kad antra kart nepridetu? Vilius - Gal palikt kad galetu det kad ir kelis kart ta pati elementa (pavyzdziui nori mynt dvirati ir pradzioj treniruotes ir pabaigoj :D)
-    //jeigu pasalina is build-workout reiks grazint atgal i exercise sarasa? Vilius - Jei paliekam, tada nebereiks ir grazint, tiesiog liks ten
-    
-    // Vilius - jei tinka ta logika, tuomet kaip suprantu uztenka tik situos uzkomentuot
-    /*this.remove(index);   
-    if (this.exercises.length <= 0){
-      this.isEmpty = true;
-    }*/
   }
 
   remove(exerciseIndex : any){
@@ -47,4 +54,10 @@ refreshList(){
       this.exercises.splice(exerciseIndex, 1);
     }
   }
+
+  transferInfo(selected : MuscleGroup){
+    this.selectedMuscleGroup = selected;
+    this.refreshList();
+  }
+  
 }

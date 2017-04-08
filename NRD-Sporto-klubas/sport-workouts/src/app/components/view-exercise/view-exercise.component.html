@@ -1,6 +1,6 @@
   <button *ngIf="!exercise" (click)="addNewExercise()" class="btn btn-grey btn-primary">Pridėti pratimą</button>
   <app-add-exercise *ngIf="exercise" [exerciseDetails]="exercise" (saveEvent)="saveExercise($event)"></app-add-exercise>
-<app-exercise-groups></app-exercise-groups>
+<app-exercise-groups (selectEvent)="selectMuscleGroup($event)"></app-exercise-groups>
 <div class="row" style="margin-top: 20px;">
   <div *ngIf="isLoading">Siunčiami duomenys...</div>
   <div *ngIf="!isLoading">

@@ -18,7 +18,7 @@ export class DataServiceService {
       .delay(this.delayTimeSec)
       .toPromise()
       .then(response => {
-        console.log(response);
+        //console.log(response);
         return response.json() as Exercise[];
       });    
   }
@@ -43,6 +43,14 @@ export class DataServiceService {
      .then( () => null);
   }
 
+  getExercisesByMuscleGroup(groupId : number): Promise<Exercise[]> {
+    return this.http.get('http://localhost:49973/api/exer/' + groupId)
+      .toPromise()
+      .then(response => {
+        return response.json() as Exercise[];
+      });    
+  }
+
   //----------------------------------------------------------------------
   // muscle group service
 
@@ -50,7 +58,7 @@ export class DataServiceService {
     return this.http.get('http://localhost:49973/api/musclegroups')
       .toPromise()
       .then(response => {
-        console.log(response);
+        //console.log(response);
         return response.json() as MuscleGroup[];
       });    
   }
