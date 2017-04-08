@@ -14,12 +14,12 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
+            <li><a routerLink="build-workout">Pridėti rutiną</a></li>
             <li><a routerLink="workout-calendar">Kalendorius</a></li>
             <li><a routerLink="view-exercises">Pratimai</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mano paskyra<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Mano profilis</a></li>
                   <li><a routerLink="my-workouts">Mano rutinos</a></li>
               </ul>
             </li>
@@ -27,7 +27,6 @@
         </div>
       </div>
     </nav>
-
     <div class = "container">
       <router-outlet></router-outlet>
       </div>

@@ -1,15 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { DataServiceService } from "app/services/data-service.service";
+import { Workout } from "app/models/workout";
+import { MuscleGroup } from "app/models/muscle-group";
 
 @Component({
   selector: 'app-my-workouts',
   templateUrl: './my-workouts.component.html',
-  styleUrls: ['./my-workouts.component.css']
+  styleUrls: ['./my-workouts.component.css'],
+  providers: [DataServiceService]
 })
 export class MyWorkoutsComponent implements OnInit {
+  workouts: Workout[];
 
-  constructor() { }
+  isLoading: boolean = false;
+  isEmpty: boolean = false;
+  constructor(private dataService: DataServiceService) { }
 
   ngOnInit() {
+    this.refreshList();
   }
 
+  refreshList() {
+    this.isLoading = true;
+    this.dataService.getWorkouts().then(c => {
+      this.workouts = c;
+      this.isLoading = false;
+    });
+  }
 }
