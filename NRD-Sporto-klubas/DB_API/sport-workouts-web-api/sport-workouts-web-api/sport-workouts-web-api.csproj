@@ -258,17 +258,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704071239029_InitialCreate.cs" />
-    <Compile Include="Migrations\201704071239029_InitialCreate.Designer.cs">
-      <DependentUpon>201704071239029_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704071415568_bandmas.cs" />
-    <Compile Include="Migrations\201704071415568_bandmas.Designer.cs">
-      <DependentUpon>201704071415568_bandmas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704072139396_myMigration.cs" />
-    <Compile Include="Migrations\201704072139396_myMigration.Designer.cs">
-      <DependentUpon>201704072139396_myMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201704081546094_newDb.cs" />
+    <Compile Include="Migrations\201704081546094_newDb.Designer.cs">
+      <DependentUpon>201704081546094_newDb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -352,14 +344,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704071239029_InitialCreate.resx">
-      <DependentUpon>201704071239029_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704071415568_bandmas.resx">
-      <DependentUpon>201704071415568_bandmas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704072139396_myMigration.resx">
-      <DependentUpon>201704072139396_myMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704081546094_newDb.resx">
+      <DependentUpon>201704081546094_newDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

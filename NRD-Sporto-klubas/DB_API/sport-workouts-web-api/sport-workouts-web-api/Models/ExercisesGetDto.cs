@@ -11,5 +11,6 @@ namespace sport_workouts_web_api.Models
         public string ExerciseName { get; set; }
         public string ExerciseImageFirst { get; set; }
         public string ExerciseImageSecond { get; set; }
+        public virtual ICollection<MuscleGroupsGetDto> MuscleGroups { get; set; }
     }
 }

@@ -12,5 +12,6 @@ namespace sport_workouts_web_api.Models
         public int WorkoutId { get; set; }
         public string WorkoutName { get; set; }
         public virtual ICollection<ExercisesGetDto> Exercises { get; set; }
+        public virtual ICollection<MuscleGroupsGetDto> MuscleGroups { get; set; }
     }
 }
