@@ -41,6 +41,7 @@ namespace sport_workouts_web_api.Controllers
 
         // GET: api/Workouts/5
         //[ResponseType(typeof(Workout))]
+        //[EnableCorsAttribute("http://localhost:4200", "*", "*")]
         public WorkoutGetDto GetWorkout(int id)
         {
             Workout workout = db.Workouts.Find(id);

@@ -78,7 +78,7 @@ getWorkouts(): Promise<Workout[]> {
 }
 
 getWorkout(id : number): Promise<Workout> {
-    return this.http.get('http://localhost:49973/api/workout/' + id)
+    return this.http.get('http://localhost:49973/api/workouts/' + id)
       .toPromise()
       .then(response => {
         return response.json() as Workout;

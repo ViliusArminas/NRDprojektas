@@ -63,6 +63,9 @@ export class BuildWorkoutComponent implements OnInit {
     this.dataService.getWorkout(id).then(w => {
       this.workout = w;
       console.log(this.workout);
+      this.exercises = this.workout.exercises;
+      this.muscleGroups = this.workout.muscleGroups;
+      this.workoutDays.length = 1;
     });
   }
 

@@ -18,7 +18,6 @@ export class MyWorkoutsComponent implements OnInit {
   constructor(private dataService: DataServiceService, private router: Router) { }
 
   edit(workout : Workout){
-    console.log(workout);
     this.router.navigate(['/build-workout/' + workout.workoutId]);
   }
 
