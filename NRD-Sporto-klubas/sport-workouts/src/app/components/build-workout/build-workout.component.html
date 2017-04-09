@@ -40,7 +40,7 @@
                     <span class="btn btn-danger pull-right glyphicon glyphicon-minus" *ngIf="workoutDays.length > 1" (click)="removeWorkoutDay(i)" ></span>
                     </div>
                     <div class="panel-body">
-                <app-workout-day></app-workout-day>
+                <app-workout-day [workoutDays]="workout.workoutDays"></app-workout-day>
                 </div>
                 </div>
                 </div>

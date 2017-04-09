@@ -8,10 +8,14 @@ import { WorkoutDay } from "app/models/workout-day";
 })
 export class WorkoutDayComponent implements OnInit {
 
+@Input() 
+workoutDays: WorkoutDay;
+
 
   constructor() { }
 
   ngOnInit() {
+    console.log(this.workoutDays[0].workoutDayMonthWeek);
   }
 
 
