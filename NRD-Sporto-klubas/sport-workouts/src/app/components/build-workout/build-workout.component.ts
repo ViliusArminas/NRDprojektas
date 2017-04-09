@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Exercise} from "app/models/exercise";
 import { DataServiceService } from "app/services/data-service.service";
 import { MuscleGroup } from "app/models/muscle-group";
@@ -19,10 +20,10 @@ export class BuildWorkoutComponent implements OnInit {
   muscleGroups : MuscleGroup[];
   workoutDays : WorkoutDay[] = [];
 
-  constructor(private dataService: DataServiceService) { }
+  workout : Workout = null;
+  urlParam : any = null;
 
-  loadExerciseList(){
-  }
+  constructor(private dataService: DataServiceService, private router : Router, private activatedRoute: ActivatedRoute) { }
 
    loadMuscleGroupsList(){
     this.dataService.getMuscleGroups().then(arr => {
@@ -46,9 +47,23 @@ export class BuildWorkoutComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.workoutDays.length = 1;
-    
-    
+    this.activatedRoute.params.subscribe((params: Params) => {
+        this.urlParam = params['id'];
+
+        if (this.urlParam == "new"){    // jeigu kuriamas naujas workout
+          this.workoutDays.length = 1;
+          this.workout = new Workout();
+        }else{                          // jeigu redaguojamas esamas workout
+            this.getWorkout(this.urlParam);
+        }      
+    }); 
+  }
+
+  getWorkout(id : number){
+    this.dataService.getWorkout(id).then(w => {
+      this.workout = w;
+      console.log(this.workout);
+    });
   }
 
   @ViewChild(ExerciseComponent)
@@ -60,6 +75,13 @@ export class BuildWorkoutComponent implements OnInit {
 
    removeWorkoutDay(i: number) {  
         this.workoutDays.splice(i,1);
+    }
+
+    save(){
+      this.workout.exercises = this.exercises;
+      this.workout.workoutDays = this.workoutDays;
+      this.workout.muscleGroups = this.muscleGroups;
+      console.log(this.workout);
     }
 
 }

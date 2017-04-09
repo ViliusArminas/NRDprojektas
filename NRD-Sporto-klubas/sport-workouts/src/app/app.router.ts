@@ -8,8 +8,8 @@ import { WorkoutCalendarComponent } from './components/workout-calendar/workout-
 import { ViewExerciseComponent } from './components/view-exercise/view-exercise.component';
 
 export const router: Routes = [
-    { path: '', redirectTo: 'build-workout', pathMatch: 'full' },
-    { path: 'build-workout', component: BuildWorkoutComponent },
+    { path: '', redirectTo: 'build-workout/new', pathMatch: 'full' },
+    { path: 'build-workout/:id', component: BuildWorkoutComponent },
     { path: 'workout-calendar', component: WorkoutCalendarComponent },
     { path: 'my-workouts', component: MyWorkoutsComponent },
     { path: 'view-exercises', component: ViewExerciseComponent }

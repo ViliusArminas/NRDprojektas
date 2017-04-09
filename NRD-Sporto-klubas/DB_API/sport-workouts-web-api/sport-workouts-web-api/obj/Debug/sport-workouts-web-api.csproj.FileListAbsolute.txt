@@ -377,6 +377,6 @@ C:\Users\Vilius\Desktop\AkademijosGit\NRDprojektas\NRD-Sporto-klubas\DB_API\spor
 C:\Users\Vilius\Desktop\AkademijosGit\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-workouts-web-api\sport-workouts-web-api\obj\Debug\sport-workouts-web-api.csprojResolveAssemblyReference.cache
 C:\Users\Vilius\Desktop\AkademijosGit\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-workouts-web-api\sport-workouts-web-api\obj\Debug\sport-workouts-web-api.dll
 C:\Users\Vilius\Desktop\AkademijosGit\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-workouts-web-api\sport-workouts-web-api\obj\Debug\sport-workouts-web-api.pdb
-C:\Users\Gytis\Documents\GitHub\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-workouts-web-api\sport-workouts-web-api\obj\Debug\sport_workouts_web_api.Migrations.newDb.resources
 C:\Users\Vilius\Desktop\AkademijosGit\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-workouts-web-api\sport-workouts-web-api\obj\Debug\sport_workouts_web_api.Migrations.Withworkoutdates.resources
 C:\Users\Vilius\Desktop\AkademijosGit\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-workouts-web-api\sport-workouts-web-api\obj\Debug\sport-workouts-web-api.csproj.GenerateResource.Cache
+C:\Users\Gytis\Documents\GitHub\NRDprojektas\NRD-Sporto-klubas\DB_API\sport-workouts-web-api\sport-workouts-web-api\obj\Debug\sport_workouts_web_api.Migrations.Withworkoutdates.resources

@@ -40,16 +40,17 @@ namespace sport_workouts_web_api.Controllers
         }
 
         // GET: api/Workouts/5
-        [ResponseType(typeof(Workout))]
-        public IHttpActionResult GetWorkout(int id)
+        //[ResponseType(typeof(Workout))]
+        public WorkoutGetDto GetWorkout(int id)
         {
             Workout workout = db.Workouts.Find(id);
             if (workout == null)
             {
-                return NotFound();
+                return null;
             }
 
-            return Ok(workout);
+            WorkoutGetDto result = AutoMapper.Mapper.Map<WorkoutGetDto>(workout);
+            return result;
         }
 
         // PUT: api/Workouts/5
