@@ -15,7 +15,7 @@ workoutDays: WorkoutDay;
   constructor() { }
 
   ngOnInit() {
-    console.log(this.workoutDays);
+    //console.log(this.workoutDays);
   }
 
 

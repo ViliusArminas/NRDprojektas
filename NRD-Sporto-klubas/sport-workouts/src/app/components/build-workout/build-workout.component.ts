@@ -16,13 +16,14 @@ import {ExerciseComponent} from 'app/components/exercise/exercise.component';
 })
 export class BuildWorkoutComponent implements OnInit {
  
-  exercises: Exercise[] = [];
+ // exercises: Exercise[] = [];
   muscleGroups : MuscleGroup[];
-  workoutDays : WorkoutDay[] = [];
+ // workoutDays : WorkoutDay[] = [];
 
-  workout : Workout = null;
+  workout : Workout;
+  
   urlParam : any = null;
-
+isLoading: boolean = false;
   constructor(private dataService: DataServiceService, private router : Router, private activatedRoute: ActivatedRoute) { }
 
    loadMuscleGroupsList(){
@@ -34,12 +35,12 @@ export class BuildWorkoutComponent implements OnInit {
   remove(exerciseIndex : any){
     
     if (exerciseIndex > -1) {
-    this.exercises.splice(exerciseIndex, 1);
+    this.workout.exercises.splice(exerciseIndex, 1);
     }
   }
 
   addExercise(item : Exercise){
-    this.exercises.push(item);
+    this.workout.exercises.push(item);
   }
 
   selectMuscleGroup(selected : MuscleGroup){
@@ -51,21 +52,25 @@ export class BuildWorkoutComponent implements OnInit {
         this.urlParam = params['id'];
 
         if (this.urlParam == "new"){    // jeigu kuriamas naujas workout
-          this.workoutDays.length = 1;
+         // this.workoutDays.length = 1;
           this.workout = new Workout();
-        }else{                          // jeigu redaguojamas esamas workout
+        }else{   
+                  this.isLoading = true;               // jeigu redaguojamas esamas workout
             this.getWorkout(this.urlParam);
+            this.isLoading = false;  
+            
         }      
     }); 
+    
   }
 
   getWorkout(id : number){
     this.dataService.getWorkout(id).then(w => {
       this.workout = w;
       console.log(this.workout);
-      this.exercises = this.workout.exercises;
-      this.muscleGroups = this.workout.muscleGroups;
-      this.workoutDays.length = 1;
+      //this.exercises = this.workout.exercises;
+      //this.muscleGroups = this.workout.muscleGroups;
+      //this.workoutDays.length = 1;
     });
   }
 
@@ -73,17 +78,22 @@ export class BuildWorkoutComponent implements OnInit {
   private child: ExerciseComponent;
 
   addWorkoutDay() {
-    this.workoutDays.length += 1;
+   
+   this.workout.workoutDays.push({
+     workoutDayId: null,
+     workoutDayMonthWeek: 0,
+     workoutDayWeekDay: 0
+   });
   }
 
    removeWorkoutDay(i: number) {  
-        this.workoutDays.splice(i,1);
+        this.workout.workoutDays.splice(i,1);
     }
 
     save(){
-      this.workout.exercises = this.exercises;
-      this.workout.workoutDays = this.workoutDays;
-      this.workout.muscleGroups = this.muscleGroups;
+     // this.workout.exercises = this.exercises;
+     // this.workout.workoutDays = this.workoutDays;
+      //this.workout.muscleGroups = this.muscleGroups;
       console.log(this.workout);
     }
 
