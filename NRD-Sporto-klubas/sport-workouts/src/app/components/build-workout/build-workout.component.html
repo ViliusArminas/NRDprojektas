@@ -33,14 +33,14 @@
               </div>
               <div class="form-group col-sm-10">
                 
-                <div *ngFor="let workoutDay of workoutDays; let i = index">
+                <div *ngFor="let workoutDay of workout.workoutDays; let i = index">
                   <div class="panel panel-default">
                     <div class="panel-heading">
                     <label>Rutinos laikas {{ i + 1}}</label>
                     <span class="btn btn-danger pull-right glyphicon glyphicon-minus" *ngIf="workoutDays.length > 1" (click)="removeWorkoutDay(i)" ></span>
                     </div>
                     <div class="panel-body">
-                <app-workout-day [workoutDays]="workout.workoutDays"></app-workout-day>
+                <app-workout-day [workoutDays]="workout.workoutDays[i]"></app-workout-day>
                 </div>
                 </div>
                 </div>
