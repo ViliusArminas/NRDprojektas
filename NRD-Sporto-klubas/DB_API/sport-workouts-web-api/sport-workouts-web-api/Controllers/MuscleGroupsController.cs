@@ -92,8 +92,9 @@ namespace sport_workouts_web_api.Controllers
         }
 
         // DELETE: api/MuscleGroups/5
-        [ResponseType(typeof(MuscleGroup))]
-        public IHttpActionResult DeleteMuscleGroup(int id)
+        //[ResponseType(typeof(MuscleGroup))]
+        [Route("api/msc/delete/{id}")]
+        public IHttpActionResult GetDeleteMuscleGroup(int id)
         {
             MuscleGroup muscleGroup = db.MuscleGroups.Find(id);
             if (muscleGroup == null)

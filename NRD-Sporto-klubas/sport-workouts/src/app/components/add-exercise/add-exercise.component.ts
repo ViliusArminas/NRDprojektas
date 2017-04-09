@@ -29,7 +29,6 @@ export class AddExerciseComponent implements OnInit {
     }
 
     var groups : MuscleGroup[] = this.exerciseDetails.muscleGroups;
-    console.log(groups);
     
     for (var i = 0; i < this.muscleGroups.length; i++){
       if (groups == null)
