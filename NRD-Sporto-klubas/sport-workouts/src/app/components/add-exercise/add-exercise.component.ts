@@ -1,18 +1,50 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Exercise } from "app/models/exercise";
+import { DataServiceService } from 'app/services/data-service.service';
+import { MuscleGroup } from "app/models/muscle-group";
 
 @Component({
   selector: 'app-add-exercise',
   templateUrl: './add-exercise.component.html',
-  styleUrls: ['./add-exercise.component.css']
+  styleUrls: ['./add-exercise.component.css'],
+  providers: [DataServiceService]
 })
 export class AddExerciseComponent implements OnInit {
 
-  constructor() { }
+  muscleGroups : MuscleGroup[];
+  checkedArray : boolean[] = [];
+
+  constructor(private dataService : DataServiceService) { }
 
   ngOnInit() {
+    this.dataService.getMuscleGroups().then(groups =>{
+      this.muscleGroups = groups;
+      this.initialiseChosenGroupsBooleanArray();
+    });
   }
 
+  initialiseChosenGroupsBooleanArray(){
+    for (var i = 0; i < this.muscleGroups.length; i++){
+      this.checkedArray.push(false);
+    }
+
+    var groups : MuscleGroup[] = this.exerciseDetails.muscleGroups;
+    console.log(groups);
+    
+    for (var i = 0; i < this.muscleGroups.length; i++){
+      if (groups == null)
+        return;
+      for (var j = 0; j < groups.length; j++){
+        if (this.muscleGroups[i].muscleGroupId == groups[j].muscleGroupId){
+          this.checkedArray[i] = true;
+        }
+      }
+    }
+    
+  }
+
+  // reiks kazkaip padaryt, kad patikrintu ar atejo naujas obj, jeigu paspaudi nauja
+  // ir tada redaguoti, neatsinaujina checkboxai
   @Input()
   exerciseDetails: Exercise;
 
@@ -20,12 +52,14 @@ export class AddExerciseComponent implements OnInit {
   saveEvent = new EventEmitter<Exercise>();
 
   save(){
-    if (!this.exerciseDetails.exerciseImageFirst){
-      this.exerciseDetails.exerciseImageFirst =  "assets/images/noimg.png";
+    this.exerciseDetails.muscleGroups = [];
+    for (var i = 0; i < this.checkedArray.length; i++){
+      if (this.checkedArray[i]){
+        var checked : MuscleGroup = this.muscleGroups[i];
+        this.exerciseDetails.muscleGroups.push(checked);
+      }
     }
-    if (!this.exerciseDetails.exerciseImageSecond){
-      this.exerciseDetails.exerciseImageSecond =  "assets/images/noimg.png";
-    }
+
     this.saveEvent.emit(this.exerciseDetails);
   }
 

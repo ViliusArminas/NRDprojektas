@@ -49,10 +49,10 @@ selectedMuscleGroup : MuscleGroup = null;
 
     //update exercise in DB
     if (this.editingExercise){
-      this.dataService.updateExercise(newExercise);
+      console.log(newExercise);
     }//add new  exercise to DB
     else{ 
-      this.dataService.addExercise(newExercise);
+      console.log(newExercise);
     }
 
     this.editingExercise = false;

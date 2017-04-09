@@ -23,6 +23,20 @@
                 </div>
             </div>
 
+            <label>Raumenų grupės:</label>
+            <div class="form-group" *ngFor="let group of muscleGroups; let i = index">
+                <input type="checkbox" name="fancy-checkbox" id="option{{i}}" [(ngModel)]="checkedArray[i]" autocomplete="off" />
+                <div class="btn-group col-sm-5">
+                    <label for="option{{i}}" class="btn btn-default">
+                        <span class="glyphicon glyphicon-ok"></span>
+                        <span> </span>
+                    </label>
+                    <label for="option{{i}}" class="btn btn-default active">
+                        {{group.muscleGroupName}}
+                    </label>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

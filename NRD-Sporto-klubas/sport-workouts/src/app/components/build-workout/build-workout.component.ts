@@ -12,15 +12,12 @@ import {ExerciseComponent} from 'app/components/exercise/exercise.component';
 })
 export class BuildWorkoutComponent implements OnInit {
 
-  exercises: Exercise[];
+  exercises: Exercise[] = [];
   muscleGroups : MuscleGroup[];
 
   constructor(private dataService: DataServiceService) { }
 
   loadExerciseList(){
-    this.dataService.getExercises().then(arr => {
-      this.exercises = arr;
-    });
   }
 
    loadMuscleGroupsList(){
