@@ -29,7 +29,7 @@ export class DataServiceService {
     return this.http.post('/api/exercises', exercises)
       .toPromise()
       .then(response => {
-        console.log(exercises);
+      //  console.log(exercises);
         return response.json().data as Exercise;
       });    
   }  

@@ -13,8 +13,8 @@ namespace sport_workouts_web_api.Classes
         }
 
         public int WorkoutDayId { get; set; }
-        public string WorkoutDayMonthWeek { get; set; }
-        public string WorkoutDayWeekDay { get; set; }
+        public int WorkoutDayMonthWeek { get; set; }
+        public int WorkoutDayWeekDay { get; set; }
 
         public virtual Workout Workout { get; set; }
     }

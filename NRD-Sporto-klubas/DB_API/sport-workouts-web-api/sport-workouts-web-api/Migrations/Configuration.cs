@@ -51,6 +51,12 @@
                 Exercise Exercise11 = new Exercise() { ExerciseName = "Atsilenkimai", ExerciseImageFirst = image_url + "atsilenkimai.gif", ExerciseImageSecond = image_url + "atsilenkimai.gif" };
                 Exercise Exercise12 = new Exercise() { ExerciseName = "Atsilenkimai šonu", ExerciseImageFirst = image_url + "atsilenkimia_sonu.gif", ExerciseImageSecond = image_url + "atsilenkimia_sonu.gif" };
 
+                WorkoutDay WorkoutDay1 = new WorkoutDay() { WorkoutDayMonthWeek = 1, WorkoutDayWeekDay = 1 };
+                WorkoutDay WorkoutDay2 = new WorkoutDay() { WorkoutDayMonthWeek = 2, WorkoutDayWeekDay = 3 };
+                WorkoutDay WorkoutDay3 = new WorkoutDay() { WorkoutDayMonthWeek = 3, WorkoutDayWeekDay = 2 };
+                WorkoutDay WorkoutDay4 = new WorkoutDay() { WorkoutDayMonthWeek = 4, WorkoutDayWeekDay = 6 };
+               
+
                 // Workouts
                 Workout Workout1 = new Workout() { WorkoutName = "Kojų ir pilvo preso treniruotė" };
                 Workout Workout2 = new Workout() { WorkoutName = "Krūtinės ir rankų treniruotė" };
@@ -135,6 +141,12 @@
                 Exercise12.MuscleGroups.Add(muscleGroup2);
                 muscleGroup2.Exercises.Add(Exercise11);
                 muscleGroup2.Exercises.Add(Exercise12);
+
+                // Workouts with dates
+                Workout1.WorkoutDays.Add(WorkoutDay1);
+                Workout1.WorkoutDays.Add(WorkoutDay2);
+                Workout2.WorkoutDays.Add(WorkoutDay3);
+                Workout3.WorkoutDays.Add(WorkoutDay4);
 
                 // Add all data to database (Workouts now includes all other data)
                 context.Workouts.Add(Workout1);

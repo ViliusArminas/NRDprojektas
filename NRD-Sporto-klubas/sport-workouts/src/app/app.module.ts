@@ -7,6 +7,7 @@ import { AlertModule } from 'ng2-bootstrap';
 import { CalendarModule } from 'angular-calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { BuildWorkoutComponent } from './components/build-workout/build-workout.component';
@@ -17,6 +18,7 @@ import { WorkoutCalendarComponent } from './components/workout-calendar/workout-
 import { ExerciseComponent } from './components/exercise/exercise.component';
 import { InMemoryDataService } from "app/services/in-memory-data.service";
 import { ExerciseGroupsComponent } from './components/exercise-groups/exercise-groups.component';
+import { WorkoutDayComponent } from './components/workout-day/workout-day.component';
 
 
 
@@ -29,7 +31,8 @@ import { ExerciseGroupsComponent } from './components/exercise-groups/exercise-g
     ViewExerciseComponent,
     WorkoutCalendarComponent,
     ExerciseComponent,
-    ExerciseGroupsComponent
+    ExerciseGroupsComponent,
+    WorkoutDayComponent
   ],
   imports: [
     BrowserModule,
