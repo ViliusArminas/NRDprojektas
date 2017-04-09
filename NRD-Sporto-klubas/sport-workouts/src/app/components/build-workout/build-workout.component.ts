@@ -56,6 +56,12 @@ isLoading: boolean = false;
           this.workout.muscleGroups = [];
           this.workout.exercises = [];
           this.workout.workoutDays = [];
+         
+          this.workout.workoutDays.push({
+     workoutDayId: null,
+     workoutDayMonthWeek: 0,
+     workoutDayWeekDay: 0
+   });
            console.log(this.workout);
         }else{   
                   this.isLoading = true;               // jeigu redaguojamas esamas workout
