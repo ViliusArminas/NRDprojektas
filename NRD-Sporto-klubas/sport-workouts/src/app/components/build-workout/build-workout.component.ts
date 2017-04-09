@@ -100,10 +100,16 @@ isLoading: boolean = false;
     }
 
     save(){
-     // this.workout.exercises = this.exercises;
-     // this.workout.workoutDays = this.workoutDays;
-      //this.workout.muscleGroups = this.muscleGroups;
-      console.log(this.workout);
-    }
-
+  
+        this.activatedRoute.params.subscribe((params: Params) => {
+        this.urlParam = params['id'];
+       if (this.urlParam == "new"){  
+        this.dataService.addWorkout(this.workout);
+       }
+  
+    });
+  }
 }
+
+
+

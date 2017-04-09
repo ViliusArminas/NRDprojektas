@@ -91,12 +91,10 @@ namespace sport_workouts_web_api.Controllers
 
         // POST: api/Workouts
         [ResponseType(typeof(Workout))]
+        [EnableCorsAttribute("http://localhost:4200", "*", "*")]
         public IHttpActionResult PostWorkout(Workout workout)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            
 
             db.Workouts.Add(workout);
             db.SaveChanges();

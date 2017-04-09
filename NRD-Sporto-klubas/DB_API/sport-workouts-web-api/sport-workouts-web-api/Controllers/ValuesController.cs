@@ -4,10 +4,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace sport_workouts_web_api.Controllers
 {
     //[Authorize]
+    [EnableCorsAttribute("http://localhost:4200", "*", "*")]
     public class ValuesController : ApiController
     {
         // GET api/values

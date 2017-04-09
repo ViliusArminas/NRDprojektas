@@ -85,6 +85,20 @@ getWorkout(id : number): Promise<Workout> {
       });    
 }
 
+ addWorkout(workout: Workout): Promise<Workout> {
+    return this.http.put('http://localhost:49973/api/workouts/', workout)
+      .toPromise()
+      .then(response => {
+      //  console.log(exercises);
+        return response.json().data as Workout;
+      });    
+  }  
+
+   removeWorkout(workout : Workout): Promise<void> {
+    return this.http.delete('/api/workouts/' + workout.workoutId)
+     .toPromise()
+     .then( () => null);
+  }
 
 
 }

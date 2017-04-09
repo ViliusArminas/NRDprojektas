@@ -32,4 +32,9 @@ export class MyWorkoutsComponent implements OnInit {
       this.isLoading = false;
     });
   }
+
+  remove(workout : Workout){
+    this.dataService.removeWorkout(workout);
+  }
+
 }
