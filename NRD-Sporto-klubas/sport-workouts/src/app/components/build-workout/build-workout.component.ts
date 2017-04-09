@@ -16,11 +16,9 @@ import {ExerciseComponent} from 'app/components/exercise/exercise.component';
 })
 export class BuildWorkoutComponent implements OnInit {
  
- // exercises: Exercise[] = [];
   muscleGroups : MuscleGroup[];
- // workoutDays : WorkoutDay[] = [];
-
   workout : Workout;
+
   
   urlParam : any = null;
 isLoading: boolean = false;
@@ -35,7 +33,9 @@ isLoading: boolean = false;
   remove(exerciseIndex : any){
     
     if (exerciseIndex > -1) {
+      
     this.workout.exercises.splice(exerciseIndex, 1);
+    console.log(this.workout);
     }
   }
 
@@ -52,8 +52,8 @@ isLoading: boolean = false;
         this.urlParam = params['id'];
 
         if (this.urlParam == "new"){    // jeigu kuriamas naujas workout
-         // this.workoutDays.length = 1;
-          this.workout = new Workout();
+          this.workout = new Workout(); // cia reikia pagamint tuscia klases objecta ir turetu viskas veikt :D
+           console.log(this.workout);
         }else{   
                   this.isLoading = true;               // jeigu redaguojamas esamas workout
             this.getWorkout(this.urlParam);
