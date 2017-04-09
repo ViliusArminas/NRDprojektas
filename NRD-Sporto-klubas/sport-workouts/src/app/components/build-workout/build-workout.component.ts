@@ -53,6 +53,9 @@ isLoading: boolean = false;
 
         if (this.urlParam == "new"){    // jeigu kuriamas naujas workout
           this.workout = new Workout(); // cia reikia pagamint tuscia klases objecta ir turetu viskas veikt :D
+          this.workout.muscleGroups = [];
+          this.workout.exercises = [];
+          this.workout.workoutDays = [];
            console.log(this.workout);
         }else{   
                   this.isLoading = true;               // jeigu redaguojamas esamas workout
