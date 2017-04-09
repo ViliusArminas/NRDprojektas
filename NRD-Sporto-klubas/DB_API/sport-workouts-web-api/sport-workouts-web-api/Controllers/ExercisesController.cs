@@ -118,8 +118,9 @@ namespace sport_workouts_web_api.Controllers
         }
 
         // DELETE: api/Exercises/5
-        [ResponseType(typeof(Exercise))]
-        public IHttpActionResult DeleteExercise(int id)
+        //[ResponseType(typeof(Exercise))]
+        [Route("api/exer/delete/{id}")]
+        public IHttpActionResult GetDeleteExercise(int id)
         {
             Exercise exercise = db.Exercises.Find(id);
             if (exercise == null)

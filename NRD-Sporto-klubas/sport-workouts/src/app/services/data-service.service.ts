@@ -26,10 +26,9 @@ export class DataServiceService {
   }
 
   addExercise(exercises: Exercise): Promise<Exercise> {
-    return this.http.post('/api/exercises', exercises)
+    return this.http.post('http://localhost:49973/api/exer', exercises)
       .toPromise()
       .then(response => {
-      //  console.log(exercises);
         return response.json().data as Exercise;
       });    
   }  
@@ -41,7 +40,7 @@ export class DataServiceService {
   }  
 
   removeExercise(exercise : Exercise): Promise<void> {
-    return this.http.delete('/api/exercises/' + exercise.exerciseId)
+    return this.http.delete('http://localhost:49973/api/exer/delete/' + exercise.exerciseId)
      .toPromise()
      .then( () => null);
   }
