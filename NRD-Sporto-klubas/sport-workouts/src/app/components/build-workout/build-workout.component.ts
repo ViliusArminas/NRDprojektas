@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import {Exercise} from "app/models/exercise";
 import { DataServiceService } from "app/services/data-service.service";
 import { MuscleGroup } from "app/models/muscle-group";
 import { Workout } from "app/models/workout";
+import { WorkoutDay} from "app/models/workout-day";
 import {ExerciseComponent} from 'app/components/exercise/exercise.component';
-import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-build-workout',
@@ -13,10 +14,10 @@ import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
   providers: [DataServiceService]
 })
 export class BuildWorkoutComponent implements OnInit {
-  public buildWorkoutForm: FormGroup;
+ 
   exercises: Exercise[] = [];
   muscleGroups : MuscleGroup[];
-  buildWorkout : Workout[];
+  workoutDays : WorkoutDay[] = [];
 
   constructor(private dataService: DataServiceService) { }
 
@@ -45,16 +46,20 @@ export class BuildWorkoutComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.workoutDays.length = 1;
+    
+    
   }
 
   @ViewChild(ExerciseComponent)
   private child: ExerciseComponent;
 
-  // build workout stuff
-  save(model: Workout) {
-        // call API to save
-        // ...
-        console.log(model);
+  addWorkoutDay() {
+    this.workoutDays.length += 1;
+  }
+
+   removeWorkoutDay(i: number) {  
+        this.workoutDays.splice(i,1);
     }
+
 }

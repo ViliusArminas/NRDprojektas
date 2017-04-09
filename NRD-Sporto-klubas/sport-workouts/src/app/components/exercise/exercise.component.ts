@@ -34,7 +34,7 @@ export class ExerciseComponent implements OnInit {
     this.dataService.getExercisesByMuscleGroup(id).then(c => {
           this.exercises = c;
           this.isLoading = false;
-          console.log(this.exercises);
+          //console.log(this.exercises);
     })
   }
 
