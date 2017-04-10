@@ -52,6 +52,7 @@ selectedMuscleGroup : MuscleGroup = null;
       console.log(newExercise);
     }//add new  exercise to DB
     else{ 
+      this.dataService.addExercise(newExercise);
       console.log(newExercise);
     }
 

@@ -20,21 +20,19 @@ export class DataServiceService {
       .delay(this.delayTimeSec)
       .toPromise()
       .then(response => {
-        //console.log(response);
         return response.json() as Exercise[];
       });    
   }
 
-  addExercise(exercises: Exercise): Promise<Exercise> {
+  addExercise(exercises: Exercise): Promise<void> {
     return this.http.post('http://localhost:49973/api/exer', exercises)
       .toPromise()
-      .then(response => {
-        return response.json().data as Exercise;
-      });    
+      .then(response => { null}
+      );    
   }  
 
   updateExercise(exercise: Exercise): Promise<void> {
-    return this.http.put('/api/exercises/' + exercise.exerciseId, exercise)
+    return this.http.put('/api/exer/' + exercise.exerciseId, exercise)
       .toPromise()
       .then(() => null);
   }  

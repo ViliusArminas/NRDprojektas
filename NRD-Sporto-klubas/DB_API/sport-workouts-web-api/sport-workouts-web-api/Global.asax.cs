@@ -37,6 +37,7 @@ namespace sport_workouts_web_api
                 cfg.CreateMap<Exercise, ExercisesGetDto>();
                 cfg.CreateMap<MuscleGroup, MuscleGroupsGetDto>();
                 cfg.CreateMap<WorkoutDay, WorkoutDaysGetDto>();
+                cfg.CreateMap<ExercisePostDto, Exercise>();
             });
             //or
           //  var config = new MapperConfiguration(cfg => cfg.CreateMap<Order, OrderDto>());

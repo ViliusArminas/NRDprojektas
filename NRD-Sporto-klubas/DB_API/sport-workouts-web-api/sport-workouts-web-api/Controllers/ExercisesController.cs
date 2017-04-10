@@ -14,8 +14,7 @@ using System.Web.Http.Cors;
 
 namespace sport_workouts_web_api.Controllers
 {
-     [EnableCorsAttribute("http://localhost:4200", "*", "*")]
-   
+    [EnableCorsAttribute("http://localhost:4200", "*", "*")]
     public class ExercisesController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -31,6 +30,7 @@ namespace sport_workouts_web_api.Controllers
             return result;
         }
 
+        // GET: exercises by muscle group ID
         [Route("api/exer/{groupId}")]
         public List<ExercisesGetDto> GetExercisesByMuscleGroup(int groupId)
         {
@@ -53,6 +53,36 @@ namespace sport_workouts_web_api.Controllers
 
             return filteredList;
         }
+
+        // POST: api/Exercises
+        //[ResponseType(typeof(Exercise))]
+        [Route("api/exer")]
+        public IHttpActionResult PostExercise(ExercisePostDto dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            Exercise entity = null;
+            try
+            {
+                 entity = AutoMapper.Mapper.Map<Exercise>(dto);
+            }catch (Exception e)
+            {
+                var b = e;
+            }
+           
+
+            Exercise newEntity =  db.Exercises.Add(entity);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = newEntity.ExerciseId }, newEntity);
+        }
+
+
+
+
+
 
         // GET: api/Exercises/5
         [ResponseType(typeof(Exercise))]
@@ -100,21 +130,6 @@ namespace sport_workouts_web_api.Controllers
             }
 
             return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        // POST: api/Exercises
-        [ResponseType(typeof(Exercise))]
-        public IHttpActionResult PostExercise(Exercise exercise)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.Exercises.Add(exercise);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = exercise.ExerciseId }, exercise);
         }
 
         // DELETE: api/Exercises/5
