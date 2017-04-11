@@ -90,16 +90,57 @@ namespace sport_workouts_web_api.Controllers
         }
 
         // POST: api/Workouts
-        [ResponseType(typeof(Workout))]
+        //[ResponseType(typeof(Workout))]
         [EnableCorsAttribute("http://localhost:4200", "*", "*")]
-        public IHttpActionResult PostWorkout(Workout workout)
+        public IHttpActionResult PostWorkout(WorkoutPostDto workout)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             
 
-            db.Workouts.Add(workout);
+            var insertItem = AutoMapper.Mapper.Map<Workout>(workout);
+
+            // muscleGroups entities assigned to workout by ids from dto information
+            var muscleGroups = db.MuscleGroups.ToList();
+            var workoutMuscleGroups = new List<MuscleGroup>();
+            foreach (var i in workout.MuscleGroups)
+            {
+                workoutMuscleGroups.Add(muscleGroups.Single(a => a.MuscleGroupId == i.MuscleGroupId));
+            }
+            insertItem.MuscleGroups = workoutMuscleGroups;
+            // ---------------------------
+
+            // exercises entities assigned to workout by ids from dto information
+            var exercises = db.Exercises.ToList();
+            var workoutExercises = new List<Exercise>();
+            foreach (var i in workout.Exercises)
+            {
+                workoutExercises.Add(exercises.Single(a => a.ExerciseId == i.ExerciseId));
+            }
+            insertItem.Exercises = workoutExercises;
+            // ---------------------------
+
+            // workoutDays entities created to workout from dto information
+            var workoutWorkoutDays = new List<WorkoutDay>();
+            foreach (var i in workout.WorkoutDays)
+            {
+                var workoutDays = new WorkoutDay();
+                workoutDays.WorkoutDayMonthWeek = i.WorkoutDayMonthWeek;
+                workoutDays.WorkoutDayWeekDay = i.WorkoutDayWeekDay;
+                workoutWorkoutDays.Add(workoutDays);
+            }
+            insertItem.WorkoutDays = workoutWorkoutDays;
+            // ---------------------------
+
+            // Inserting new workout with all information
+            db.Workouts.Add(insertItem);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = workout.WorkoutId }, workout);
+            var workoutDto = AutoMapper.Mapper.Map<WorkoutGetDto>(insertItem);
+
+            return CreatedAtRoute("DefaultApi", new { id = workoutDto.WorkoutId }, workoutDto);
         }
 
         // DELETE: api/Workouts/5

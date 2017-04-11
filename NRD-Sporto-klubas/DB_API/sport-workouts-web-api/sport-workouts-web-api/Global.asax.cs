@@ -40,8 +40,12 @@ namespace sport_workouts_web_api
                 cfg.CreateMap<MuscleGroup, MuscleGroupsGetDto>();
                 cfg.CreateMap<ExercisePostDto, Exercise>()
                  .ForMember(d => d.MuscleGroups, m => m.Ignore());
-                
-               
+
+                cfg.CreateMap<WorkoutPostDto, Workout>()
+                 .ForMember(d => d.MuscleGroups, m => m.Ignore())
+                 .ForMember(d => d.WorkoutDays, m => m.Ignore())
+                 .ForMember(d => d.Exercises, m => m.Ignore());
+
             });
           //or
           //  var config = new MapperConfiguration(cfg => cfg.CreateMap<Order, OrderDto>());

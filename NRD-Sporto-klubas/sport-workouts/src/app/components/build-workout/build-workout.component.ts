@@ -139,13 +139,14 @@ export class BuildWorkoutComponent implements OnInit {
     }
 
     save(){
-      /*this.activatedRoute.params.subscribe((params: Params) => {
+       this.updateMuscleGroups();
+      this.activatedRoute.params.subscribe((params: Params) => {
         this.urlParam = params['id'];
         if (this.urlParam == "new"){  
           this.dataService.addWorkout(this.workout);
         }
-      });*/
-      this.updateMuscleGroups();
+      });
+     this.router.navigate(['/my-workouts']);
       console.log(this.workout);
   }
 
