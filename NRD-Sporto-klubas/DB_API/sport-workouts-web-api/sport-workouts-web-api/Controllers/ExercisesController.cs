@@ -56,23 +56,29 @@ namespace sport_workouts_web_api.Controllers
         }
 
         // POST: api/Exercises
-        [ResponseType(typeof(Exercise))]
+        //[ResponseType(typeof(Exercise))]
         [Route("api/exer")]
-         public IHttpActionResult PostExercise(ExercisePostDto dto)
+         public IHttpActionResult PostExercise(ExercisePostDto exercise)
          {
              if (!ModelState.IsValid)
              {
                  return BadRequest(ModelState);
              }
-            var temp = dto;
-            var entity = AutoMapper.Mapper.Map<Exercise>(dto);
-           
+
+            var insertItem = AutoMapper.Mapper.Map<Exercise>(exercise);
+            var muscleGroups = db.MuscleGroups.ToList();
+            var exerciseMuscleGroups = new List<MuscleGroup>();
+            foreach (var i in exercise.MuscleGroups)
+            {
+                exerciseMuscleGroups.Add(muscleGroups.Single(a => a.MuscleGroupId == i.MuscleGroupId));
+            }
+            insertItem.MuscleGroups = exerciseMuscleGroups;
 
 
-             db.Exercises.Add(entity);
+            db.Exercises.Add(insertItem);
              db.SaveChanges();
 
-            var exerciseDto = AutoMapper.Mapper.Map<ExercisesGetDto>(entity);
+            var exerciseDto = AutoMapper.Mapper.Map<ExercisesGetDto>(insertItem);
 
             return CreatedAtRoute("DefaultApi", new { id = exerciseDto.ExerciseId }, exerciseDto);
          }

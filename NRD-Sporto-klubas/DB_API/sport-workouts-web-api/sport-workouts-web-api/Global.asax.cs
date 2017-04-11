@@ -38,8 +38,9 @@ namespace sport_workouts_web_api
                 cfg.CreateMap<Exercise, ExercisesGetDto>();
                 cfg.CreateMap<WorkoutDay, WorkoutDaysGetDto>();
                 cfg.CreateMap<MuscleGroup, MuscleGroupsGetDto>();
-                cfg.CreateMap<Exercise,ExercisePostDto>()
-                 .ForMember(d => d.MuscleGroups, m => m.MapFrom(p => p.MuscleGroups.Select(s => s.MuscleGroupId)));
+                cfg.CreateMap<ExercisePostDto, Exercise>()
+                 .ForMember(d => d.MuscleGroups, m => m.Ignore());
+                
                
             });
           //or
