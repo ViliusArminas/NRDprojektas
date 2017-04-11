@@ -6,13 +6,15 @@ import { BuildWorkoutComponent } from './components/build-workout/build-workout.
 import { MyWorkoutsComponent } from './components/my-workouts/my-workouts.component';
 import { WorkoutCalendarComponent } from './components/workout-calendar/workout-calendar.component';
 import { ViewExerciseComponent } from './components/view-exercise/view-exercise.component';
+import { LoginComponent } from "app/components/login/login.component";
 
 export const router: Routes = [
     { path: '', redirectTo: 'build-workout/new', pathMatch: 'full' },
     { path: 'build-workout/:id', component: BuildWorkoutComponent },
     { path: 'workout-calendar', component: WorkoutCalendarComponent },
     { path: 'my-workouts', component: MyWorkoutsComponent },
-    { path: 'view-exercises', component: ViewExerciseComponent }
+    { path: 'view-exercises', component: ViewExerciseComponent },
+    { path: 'login', component: LoginComponent}
 ];
 
 
