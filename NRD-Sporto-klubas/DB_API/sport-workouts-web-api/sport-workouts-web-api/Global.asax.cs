@@ -46,6 +46,8 @@ namespace sport_workouts_web_api
                  .ForMember(d => d.WorkoutDays, m => m.Ignore())
                  .ForMember(d => d.Exercises, m => m.Ignore());
 
+                cfg.CreateMap<ExerciseUpdateDto, Exercise>()
+                .ForMember(d => d.MuscleGroups, m => m.Ignore());
             });
           //or
           //  var config = new MapperConfiguration(cfg => cfg.CreateMap<Order, OrderDto>());

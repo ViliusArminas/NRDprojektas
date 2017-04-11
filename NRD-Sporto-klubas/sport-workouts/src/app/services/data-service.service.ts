@@ -32,10 +32,18 @@ export class DataServiceService {
       );    
   }  
 
-  updateExercise(exercise: Exercise): Promise<void> {
-    return this.http.put('/api/exer/' + exercise.exerciseId, exercise)
+  updateExercise(exercise: Exercise): Promise<Exercise> {
+    return this.http.put('http://localhost:49973/api/exercises/' + exercise.exerciseId, exercise)
       .toPromise()
-      .then(() => null);
+     .then(
+        response => {
+          console.log(response.json() as Exercise);
+          return response.json() as Exercise;
+        },
+        err => {
+          console.log(err);
+          return null;
+        });    
   }  
 
   removeExercise(exercise : Exercise): Promise<void> {
@@ -85,6 +93,15 @@ getWorkout(id : number): Promise<Workout> {
 
  addWorkout(workout: Workout): Promise<Workout> {
     return this.http.post('http://localhost:49973/api/workouts', workout)
+      .toPromise()
+      .then(response => {
+       console.log(response);
+        return response.json().data as Workout;
+      });    
+  }  
+
+updateWorkout(workout: Workout): Promise<Workout> {
+    return this.http.put('http://localhost:49973/api/workouts/' + workout.workoutId, workout)
       .toPromise()
       .then(response => {
        console.log(response);

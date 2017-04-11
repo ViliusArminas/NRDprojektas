@@ -267,6 +267,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ExercisePostDto.cs" />
     <Compile Include="Models\ExercisesGetDto.cs" />
+    <Compile Include="Models\ExerciseUpdateDto.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\MuscleGroupsGetDto.cs" />
     <Compile Include="Models\WorkoutDaysGetDto.cs" />

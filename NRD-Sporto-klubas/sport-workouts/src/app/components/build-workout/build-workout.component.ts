@@ -145,9 +145,12 @@ export class BuildWorkoutComponent implements OnInit {
         if (this.urlParam == "new"){  
           this.dataService.addWorkout(this.workout);
         }
+        else {
+          this.dataService.updateWorkout(this.workout);
+        }
       });
      this.router.navigate(['/my-workouts']);
-      console.log(this.workout);
+    //  console.log(this.workout);
   }
 
 }

@@ -15,7 +15,7 @@ using AutoMapper;
 
 namespace sport_workouts_web_api.Controllers
 {
-    [EnableCorsAttribute("http://localhost:4200", "*", "*")]
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class ExercisesController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -98,8 +98,9 @@ namespace sport_workouts_web_api.Controllers
         }
 
         // PUT: api/Exercises/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutExercise(int id, Exercise exercise)
+        //[ResponseType(typeof(void))]
+  
+        public IHttpActionResult PutExercise(int id, ExerciseUpdateDto exercise)
         {
             if (!ModelState.IsValid)
             {
@@ -111,9 +112,36 @@ namespace sport_workouts_web_api.Controllers
                 return BadRequest();
             }
 
-            db.Entry(exercise).State = EntityState.Modified;
+            var exer = db.Exercises.Find(id);
+            AutoMapper.Mapper.Map(exercise, exer);
 
-            try
+            var exerciseMuscleGroupsIdList = new List<int>();
+
+            foreach (var i in exercise.MuscleGroups)
+            {
+                exerciseMuscleGroupsIdList.Add(i.MuscleGroupId);
+            }
+               
+
+            foreach (var i in exer.MuscleGroups.ToList())
+            {
+                if (!exerciseMuscleGroupsIdList.Contains(i.MuscleGroupId))
+                exer.MuscleGroups.Remove(i);
+            }
+
+            foreach (var i in exercise.MuscleGroups)
+            {
+                if (!exer.MuscleGroups.Any(r => r.MuscleGroupId == i.MuscleGroupId))
+                {
+                    var addMuscleGroup = db.MuscleGroups.Find(i.MuscleGroupId);
+
+                    exer.MuscleGroups.Add(addMuscleGroup);
+                }
+    
+            }
+       
+
+                try
             {
                 db.SaveChanges();
             }
