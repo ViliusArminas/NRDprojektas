@@ -29,17 +29,20 @@ namespace sport_workouts_web_api
                 new CamelCasePropertyNamesContractResolver();
             config.Formatters.JsonFormatter.UseDataContractJsonSerializer = false;
 
-            Mapper.Initialize(cfg => {
+            Mapper.Initialize(cfg =>
+            {
                 /* cfg.CreateMap<Workout, WorkoutGetDto>()
                  .ForMember(m => m.WorkoutId, s => s.Ignore())
                  .ForMember(m => m.WorkoutName, s => s.MapFrom(d => $"kkkk: {d.WorkoutName}"));*/
                 cfg.CreateMap<Workout, WorkoutGetDto>();
                 cfg.CreateMap<Exercise, ExercisesGetDto>();
-                cfg.CreateMap<MuscleGroup, MuscleGroupsGetDto>();
                 cfg.CreateMap<WorkoutDay, WorkoutDaysGetDto>();
-                cfg.CreateMap<ExercisePostDto, Exercise>();
+                cfg.CreateMap<MuscleGroup, MuscleGroupsGetDto>();
+                cfg.CreateMap<Exercise,ExercisePostDto>()
+                 .ForMember(d => d.MuscleGroups, m => m.MapFrom(p => p.MuscleGroups.Select(s => s.MuscleGroupId)));
+               
             });
-            //or
+          //or
           //  var config = new MapperConfiguration(cfg => cfg.CreateMap<Order, OrderDto>());
         }
 

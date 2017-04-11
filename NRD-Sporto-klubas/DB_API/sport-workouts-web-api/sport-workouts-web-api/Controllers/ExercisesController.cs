@@ -11,6 +11,7 @@ using System.Web.Http.Description;
 using sport_workouts_web_api.Classes;
 using sport_workouts_web_api.Models;
 using System.Web.Http.Cors;
+using AutoMapper;
 
 namespace sport_workouts_web_api.Controllers
 {
@@ -55,34 +56,27 @@ namespace sport_workouts_web_api.Controllers
         }
 
         // POST: api/Exercises
-        //[ResponseType(typeof(Exercise))]
+        [ResponseType(typeof(Exercise))]
         [Route("api/exer")]
-        public IHttpActionResult PostExercise(ExercisePostDto dto)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            Exercise entity = null;
-            try
-            {
-                 entity = AutoMapper.Mapper.Map<Exercise>(dto);
-            }catch (Exception e)
-            {
-                var b = e;
-            }
+         public IHttpActionResult PostExercise(ExercisePostDto dto)
+         {
+             if (!ModelState.IsValid)
+             {
+                 return BadRequest(ModelState);
+             }
+            var temp = dto;
+            var entity = AutoMapper.Mapper.Map<Exercise>(dto);
            
 
-            Exercise newEntity =  db.Exercises.Add(entity);
-            db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = newEntity.ExerciseId }, newEntity);
-        }
+             db.Exercises.Add(entity);
+             db.SaveChanges();
 
+            var exerciseDto = AutoMapper.Mapper.Map<ExercisesGetDto>(entity);
 
-
-
-
+            return CreatedAtRoute("DefaultApi", new { id = exerciseDto.ExerciseId }, exerciseDto);
+         }
+         
 
         // GET: api/Exercises/5
         [ResponseType(typeof(Exercise))]
