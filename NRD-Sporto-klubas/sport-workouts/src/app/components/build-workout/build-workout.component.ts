@@ -67,7 +67,19 @@ export class BuildWorkoutComponent implements OnInit {
   }
 
   addExercise(item : Exercise){
-    this.workout.exercises.push(item);
+    if (!this.contains(item)){
+      this.workout.exercises.push(item);
+    }
+  }
+
+  contains(item : Exercise) : boolean{
+    var exists = false;
+    this.workout.exercises.forEach(ex => {
+      if (ex.exerciseId == item.exerciseId){
+        exists = true;
+      }
+    })
+    return exists;
   }
 
   selectMuscleGroup(selected : MuscleGroup){
