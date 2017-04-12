@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Exercise } from "app/models/exercise";
 import { DataServiceService } from "app/services/data-service.service";
 import { MuscleGroup } from "app/models/muscle-group";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-view-exercise',
@@ -17,7 +18,7 @@ editingExercise : boolean = false;
 
 selectedMuscleGroup : MuscleGroup = null;
 
-  constructor(private dataService: DataServiceService) { }
+  constructor(private dataService: DataServiceService,  private router : Router) { }
 
   ngOnInit() {
      this.loadList();
@@ -51,9 +52,11 @@ selectedMuscleGroup : MuscleGroup = null;
     if (this.editingExercise){
       console.log(newExercise);
       this.dataService.updateExercise(newExercise);
+      this.router.navigate(['/view-exercises']);
     }//add new  exercise to DB
     else{ 
       this.dataService.addExercise(newExercise);
+      this.router.navigate(['/view-exercises']);
       console.log(newExercise);
     }
 

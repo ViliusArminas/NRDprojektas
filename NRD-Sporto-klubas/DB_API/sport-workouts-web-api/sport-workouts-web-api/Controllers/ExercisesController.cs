@@ -56,7 +56,7 @@ namespace sport_workouts_web_api.Controllers
         }
 
         // POST: api/Exercises
-        //[ResponseType(typeof(Exercise))]
+        [ResponseType(typeof(ExercisesGetDto))]
         [Route("api/exer")]
          public IHttpActionResult PostExercise(ExercisePostDto exercise)
          {
@@ -115,29 +115,29 @@ namespace sport_workouts_web_api.Controllers
             var exer = db.Exercises.Find(id);
             AutoMapper.Mapper.Map(exercise, exer);
 
+            // Making list of musclegroups ids got from dto
             var exerciseMuscleGroupsIdList = new List<int>();
 
             foreach (var i in exercise.MuscleGroups)
             {
                 exerciseMuscleGroupsIdList.Add(i.MuscleGroupId);
             }
-               
 
+            // Checking if musclegroup existed in current exercise, if not, remove it
             foreach (var i in exer.MuscleGroups.ToList())
             {
                 if (!exerciseMuscleGroupsIdList.Contains(i.MuscleGroupId))
                 exer.MuscleGroups.Remove(i);
             }
 
+            // Cheking if muscle group exists in database and adds it to workout if it does
             foreach (var i in exercise.MuscleGroups)
             {
                 if (!exer.MuscleGroups.Any(r => r.MuscleGroupId == i.MuscleGroupId))
                 {
                     var addMuscleGroup = db.MuscleGroups.Find(i.MuscleGroupId);
-
                     exer.MuscleGroups.Add(addMuscleGroup);
                 }
-    
             }
        
 

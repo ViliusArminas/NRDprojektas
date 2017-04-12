@@ -274,6 +274,7 @@
     <Compile Include="Models\WorkoutDaysPostDto.cs" />
     <Compile Include="Models\WorkoutGetDto.cs" />
     <Compile Include="Models\WorkoutPostDto.cs" />
+    <Compile Include="Models\WorkoutUpdateDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -371,7 +372,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49973</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:49973/</IISUrl>
+          <IISUrl>http://localhost:49974/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

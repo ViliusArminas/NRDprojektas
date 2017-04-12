@@ -56,19 +56,110 @@ namespace sport_workouts_web_api.Controllers
 
         // PUT: api/Workouts/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutWorkout(int id, Workout workout)
+        [Route("api/workouts/update/{id}")]
+        public IHttpActionResult PutWorkout(int id, WorkoutUpdateDto workout)
         {
-            if (!ModelState.IsValid)
+           /* if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }
+            }*/
 
             if (id != workout.WorkoutId)
             {
                 return BadRequest();
             }
+            var work = db.Workouts.Find(id);
+            AutoMapper.Mapper.Map(workout, work);
 
-            db.Entry(workout).State = EntityState.Modified;
+            // Making list of musclegroups ids got from dto
+            var workoutMuscleGroupsIdList = new List<int>();
+            foreach (var i in workout.MuscleGroups)
+            {
+                workoutMuscleGroupsIdList.Add(i.MuscleGroupId);
+            }
+
+            // Checking if musclegroup existed in current workout, if not, remove it
+            foreach (var i in work.MuscleGroups.ToList())
+            {
+                if (!workoutMuscleGroupsIdList.Contains(i.MuscleGroupId))
+                    work.MuscleGroups.Remove(i);
+            }
+
+            // Cheking if muscle group exists in database and adds it to workout if it does
+            foreach (var i in workout.MuscleGroups)
+            {
+                if (!work.MuscleGroups.Any(r => r.MuscleGroupId == i.MuscleGroupId))
+                {
+                    var addMuscleGroup = db.MuscleGroups.Find(i.MuscleGroupId);
+                    work.MuscleGroups.Add(addMuscleGroup);
+                }
+            }
+
+            // Making list of exercises ids got from dto
+            var workoutExerciseIdList = new List<int>();
+            foreach (var i in workout.Exercises)
+            {
+                workoutExerciseIdList.Add(i.ExerciseId);
+            }
+
+            // Checking if exercise existed in current workout, if not, remove it
+            foreach (var i in work.Exercises.ToList())
+            {
+                if (!workoutExerciseIdList.Contains(i.ExerciseId))
+                    work.Exercises.Remove(i);
+            }
+
+            // Cheking if muscle group exists in database and adds it to workout if it does
+            foreach (var i in workout.Exercises)
+            {
+                if (!work.Exercises.Any(r => r.ExerciseId == i.ExerciseId))
+                {
+                    var addExercise = db.Exercises.Find(i.ExerciseId);
+                    work.Exercises.Add(addExercise);
+                }
+            }
+
+
+            // Making list of workoutDays ids got from dto
+            var workoutWorkoutDaysIdList = new List<int>();
+            foreach (var i in workout.WorkoutDays)
+            {
+                workoutWorkoutDaysIdList.Add(i.WorkoutDayId);
+            }
+
+            // Checking if workoutDay existed in current workout, if not, remove it
+            foreach (var i in work.WorkoutDays.ToList())
+            {
+                if (!workoutWorkoutDaysIdList.Contains(i.WorkoutDayId))
+                    work.WorkoutDays.Remove(i);
+            }
+
+            // Cheking if muscle group exists in database and adds it to workout if it does
+            foreach (var i in workout.WorkoutDays)
+            {
+                // if workday is new, than create new and add to workout
+                if (i.WorkoutDayId == 0)
+                {
+                    var workoutWorkoutDaysNew = new List<WorkoutDay>();
+                    foreach (var j in workout.WorkoutDays)
+                    {
+                        var workoutDays = new WorkoutDay();
+                        workoutDays.WorkoutDayMonthWeek = j.WorkoutDayMonthWeek;
+                        workoutDays.WorkoutDayWeekDay = j.WorkoutDayWeekDay;
+                        workoutWorkoutDaysNew.Add(workoutDays);
+                    }
+                    work.WorkoutDays = workoutWorkoutDaysNew;
+                }
+
+                // if workday already existed, find it and change its values
+                else
+                {
+                    var workday = db.WorkoutDays.Find(i.WorkoutDayId);
+                    workday.WorkoutDayMonthWeek = i.WorkoutDayMonthWeek;
+                    workday.WorkoutDayWeekDay = i.WorkoutDayWeekDay;
+                   
+                }
+            }
 
             try
             {

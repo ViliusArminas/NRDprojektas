@@ -16,7 +16,7 @@ export class DataServiceService {
   //exercise service
 
    getExercises(): Promise<Exercise[]> {
-    return this.http.get('http://localhost:49973/api/exer')
+    return this.http.get('http://localhost:49974/api/exer')
       .delay(this.delayTimeSec)
       .toPromise()
       .then(response => {
@@ -25,15 +25,19 @@ export class DataServiceService {
   }
 
   addExercise(exercises: Exercise): Promise<Exercise> {
-    return this.http.post('http://localhost:49973/api/exer', exercises)
+    return this.http.post('http://localhost:49974/api/exer', exercises)
       .toPromise()
       .then(response => { 
-       return response.json().data as Exercise;}
-      );    
+       return response.json().data as Exercise;}, 
+       err => {
+          console.log(err);
+          return null;
+        });  
+       
   }  
 
   updateExercise(exercise: Exercise): Promise<Exercise> {
-    return this.http.put('http://localhost:49973/api/exercises/' + exercise.exerciseId, exercise)
+    return this.http.put('http://localhost:49974/api/exercises/' + exercise.exerciseId, exercise)
       .toPromise()
      .then(
         response => {
@@ -47,13 +51,13 @@ export class DataServiceService {
   }  
 
   removeExercise(exercise : Exercise): Promise<void> {
-    return this.http.delete('http://localhost:49973/api/exer/delete/' + exercise.exerciseId)
+    return this.http.delete('http://localhost:49974/api/exer/delete/' + exercise.exerciseId)
      .toPromise()
      .then( () => null);
   }
 
   getExercisesByMuscleGroup(groupId : number): Promise<Exercise[]> {
-    return this.http.get('http://localhost:49973/api/exer/' + groupId)
+    return this.http.get('http://localhost:49974/api/exer/' + groupId)
       .toPromise()
       .then(response => {
         return response.json() as Exercise[];
@@ -64,7 +68,7 @@ export class DataServiceService {
   // muscle group service
 
   getMuscleGroups(): Promise<MuscleGroup[]> {
-    return this.http.get('http://localhost:49973/api/musclegroups')
+    return this.http.get('http://localhost:49974/api/musclegroups')
       .toPromise()
       .then(response => {
         //console.log(response);
@@ -75,7 +79,7 @@ export class DataServiceService {
   // workouts service
 
 getWorkouts(): Promise<Workout[]> {
-    return this.http.get('http://localhost:49973/api/workouts')
+    return this.http.get('http://localhost:49974/api/workouts')
       .toPromise()
       .then(response => {
         //console.log(response);
@@ -84,7 +88,7 @@ getWorkouts(): Promise<Workout[]> {
 }
 
 getWorkout(id : number): Promise<Workout> {
-    return this.http.get('http://localhost:49973/api/workouts/' + id)
+    return this.http.get('http://localhost:49974/api/workouts/' + id)
       .toPromise()
       .then(response => {
         return response.json() as Workout;
@@ -92,7 +96,7 @@ getWorkout(id : number): Promise<Workout> {
 }
 
  addWorkout(workout: Workout): Promise<Workout> {
-    return this.http.post('http://localhost:49973/api/workouts', workout)
+    return this.http.post('http://localhost:49974/api/workouts', workout)
       .toPromise()
       .then(response => {
        console.log(response);
@@ -101,7 +105,7 @@ getWorkout(id : number): Promise<Workout> {
   }  
 
 updateWorkout(workout: Workout): Promise<Workout> {
-    return this.http.put('http://localhost:49973/api/workouts/' + workout.workoutId, workout)
+    return this.http.put('http://localhost:49974/api/workouts/update/' + workout.workoutId, workout)
       .toPromise()
       .then(response => {
        console.log(response);

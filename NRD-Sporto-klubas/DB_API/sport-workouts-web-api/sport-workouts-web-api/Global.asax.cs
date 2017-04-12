@@ -37,11 +37,17 @@ namespace sport_workouts_web_api
                 cfg.CreateMap<Workout, WorkoutGetDto>();
                 cfg.CreateMap<Exercise, ExercisesGetDto>();
                 cfg.CreateMap<WorkoutDay, WorkoutDaysGetDto>();
+                cfg.CreateMap<WorkoutDaysGetDto, WorkoutDay>();
                 cfg.CreateMap<MuscleGroup, MuscleGroupsGetDto>();
                 cfg.CreateMap<ExercisePostDto, Exercise>()
                  .ForMember(d => d.MuscleGroups, m => m.Ignore());
 
                 cfg.CreateMap<WorkoutPostDto, Workout>()
+                 .ForMember(d => d.MuscleGroups, m => m.Ignore())
+                 .ForMember(d => d.WorkoutDays, m => m.Ignore())
+                 .ForMember(d => d.Exercises, m => m.Ignore());
+
+                cfg.CreateMap<WorkoutUpdateDto, Workout>()
                  .ForMember(d => d.MuscleGroups, m => m.Ignore())
                  .ForMember(d => d.WorkoutDays, m => m.Ignore())
                  .ForMember(d => d.Exercises, m => m.Ignore());
