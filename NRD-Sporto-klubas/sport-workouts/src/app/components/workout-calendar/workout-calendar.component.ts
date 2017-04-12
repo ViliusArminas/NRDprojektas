@@ -10,7 +10,7 @@ import {
   addHours
 } from 'date-fns';
 import { Subject } from 'rxjs/Subject';
-
+import { getMonth, startOfMonth, startOfWeek, endOfWeek  } from 'date-fns';
 import { AlertModule } from 'ng2-bootstrap';
 import {
   CalendarEvent,
@@ -19,6 +19,8 @@ import {
   CalendarDateFormatter
 } from 'angular-calendar';
 import { CustomDateFormatter } from './custom-date-formatter.provider';
+import * as RRule from 'rrule';
+
 
 const colors: any = {
   red: {
@@ -35,6 +37,17 @@ const colors: any = {
   }
 };
 
+interface RecurringEvent {
+  title: string;
+  color: any;
+  rrule?: {
+    freq: RRule.Frequency,
+    bymonth?: number,
+    bymonthday?: number,
+    byweekday?: RRule.Weekday[]
+  };
+}
+
 
 @Component({
   selector: 'app-workout-calendar',
@@ -49,13 +62,41 @@ const colors: any = {
 
 export class WorkoutCalendarComponent implements OnInit{
 
-  ngOnInit() {
-  }
-  @ViewChild('modalContent') modalContent: TemplateRef<any>;
-
   view: string = 'month';
 
   viewDate: Date = new Date();
+
+  recurringEvents: RecurringEvent[] = [{
+    title: 'Recurs on the 5th of each month',
+    color: colors.yellow,
+    rrule: {
+      freq: RRule.MONTHLY,
+      bymonthday: 5
+    }
+  }, {
+    title: 'Recurs yearly on the 10th of the current month',
+    color: colors.blue,
+    rrule: {
+      freq: RRule.YEARLY,
+      bymonth: getMonth(new Date()) + 1,
+      bymonthday: 10
+    }
+  }, {
+    title: 'Recurs weekly on mondays',
+    color: colors.red,
+    rrule: {
+      freq: RRule.WEEKLY,
+      byweekday: [RRule.MO],
+    }
+  }];
+
+
+calendarEvents: CalendarEvent[] = [];
+  ngOnInit() {
+     this.updateCalendarEvents();
+  }
+  @ViewChild('modalContent') modalContent: TemplateRef<any>;
+
 
    locale: string = 'lt';
 
@@ -104,4 +145,37 @@ export class WorkoutCalendarComponent implements OnInit{
     this.modalData = {event, action};
   }
   
+    updateCalendarEvents(): void {
+
+    this.calendarEvents = [];
+
+    const startOfPeriod: any = {
+      month: startOfMonth,
+      week: startOfWeek,
+      day: startOfDay
+    };
+
+    const endOfPeriod: any = {
+      month: endOfMonth,
+      week: endOfWeek,
+      day: endOfDay
+    };
+
+    this.recurringEvents.forEach(event => {
+
+      const rule: RRule = new RRule(Object.assign({}, event.rrule, {
+        dtstart: startOfPeriod[this.view](this.viewDate),
+        until: endOfPeriod[this.view](this.viewDate)
+      }));
+
+      rule.all().forEach((date) => {
+        this.calendarEvents.push(Object.assign({}, event, {
+          start: new Date(date)
+        }));
+      });
+
+    });
+
+  }
+
 }

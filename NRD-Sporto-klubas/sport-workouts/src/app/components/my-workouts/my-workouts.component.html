@@ -1,6 +1,6 @@
 <div *ngFor="let workout of workouts; let i = index;" class="container">
   <div class="row">
-    <h2>{{workout.workoutName}}  <button (click)="edit(workout)"  class="btn btn-grey btn-default">Redaguoti</button>  <button (click)="remove(workout)"  class="btn btn-grey btn-default">Šalinti</button></h2>
+    <h2>{{workout.workoutName}}  <button (click)="edit(workout)"  class="btn btn-grey btn-default">Redaguoti</button>  <button disabled="" (click)="remove(workout)"  class="btn btn-grey btn-default">Šalinti</button></h2>
    
     <div class="mano-rutina issaugota">
       <div  *ngFor="let workoutExercise of workout.exercises;" class="col-xs-4">
