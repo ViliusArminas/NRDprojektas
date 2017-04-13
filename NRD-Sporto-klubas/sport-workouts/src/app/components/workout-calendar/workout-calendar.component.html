@@ -1,3 +1,4 @@
+
 <div class="row text-center">
   <div class="col-md-4">
     <div class="btn-group">
@@ -48,7 +49,7 @@
   <mwl-calendar-month-view
     *ngSwitchCase="'month'"
     [viewDate]="viewDate"
-    [events]="events"
+    [events]="calendarEvents"
     [locale]="locale"
     [refresh]="refresh"
     [activeDayIsOpen]="activeDayIsOpen"
@@ -58,7 +59,7 @@
   <mwl-calendar-week-view
     *ngSwitchCase="'week'"
     [viewDate]="viewDate"
-    [events]="events"
+    [events]="calendarEvents"
     [locale]="locale"
     [refresh]="refresh"
     (eventClicked)="handleEvent('Clicked', $event.event)">

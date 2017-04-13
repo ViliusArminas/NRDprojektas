@@ -10,7 +10,7 @@ import {
   addHours
 } from 'date-fns';
 import { Subject } from 'rxjs/Subject';
-import { getMonth, startOfMonth, startOfWeek, endOfWeek  } from 'date-fns';
+import { getMonth, startOfMonth, startOfWeek, endOfWeek } from 'date-fns';
 import { AlertModule } from 'ng2-bootstrap';
 import {
   CalendarEvent,
@@ -20,6 +20,8 @@ import {
 } from 'angular-calendar';
 import { CustomDateFormatter } from './custom-date-formatter.provider';
 import * as RRule from 'rrule';
+import { DataServiceService } from "app/services/data-service.service";
+import { Workout } from "app/models/workout";
 
 
 const colors: any = {
@@ -38,6 +40,7 @@ const colors: any = {
 };
 
 interface RecurringEvent {
+      id: number;
   title: string;
   color: any;
   rrule?: {
@@ -54,51 +57,31 @@ interface RecurringEvent {
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './workout-calendar.component.html',
   styleUrls: ['./workout-calendar.component.css'],
-   providers: [{
-    provide: CalendarDateFormatter,
-    useClass: CustomDateFormatter
-  }]
+  providers: [DataServiceService]
 })
 
-export class WorkoutCalendarComponent implements OnInit{
+export class WorkoutCalendarComponent implements OnInit {
+  workouts: Workout[];
+
+
+  isLoading: boolean = false;
+  constructor(private modal: AlertModule, private dataService: DataServiceService) { }
 
   view: string = 'month';
 
   viewDate: Date = new Date();
 
-  recurringEvents: RecurringEvent[] = [{
-    title: 'Recurs on the 5th of each month',
-    color: colors.yellow,
-    rrule: {
-      freq: RRule.MONTHLY,
-      bymonthday: 5
-    }
-  }, {
-    title: 'Recurs yearly on the 10th of the current month',
-    color: colors.blue,
-    rrule: {
-      freq: RRule.YEARLY,
-      bymonth: getMonth(new Date()) + 1,
-      bymonthday: 10
-    }
-  }, {
-    title: 'Recurs weekly on mondays',
-    color: colors.red,
-    rrule: {
-      freq: RRule.WEEKLY,
-      byweekday: [RRule.MO],
-    }
-  }];
 
+  calendarEvents: CalendarEvent[] = [];
 
-calendarEvents: CalendarEvent[] = [];
   ngOnInit() {
-     this.updateCalendarEvents();
+    this.updateCalendarEvents();
   }
+
   @ViewChild('modalContent') modalContent: TemplateRef<any>;
 
 
-   locale: string = 'lt';
+  locale: string = 'lt';
 
   modalData: {
     action: string,
@@ -106,28 +89,19 @@ calendarEvents: CalendarEvent[] = [];
   };
 
   refresh: Subject<any> = new Subject();
-
-  events: CalendarEvent[] = [{
-    start: subDays(startOfDay(new Date()), 1),
-    end: addDays(new Date(), 1),
-    title: 'A 3 day event',
-    color: colors.red
-  }, {
-    start: startOfDay(new Date()),
-    title: 'An event with no end date',
-    color: colors.yellow
-  }, {
-    start: subDays(endOfMonth(new Date()), 3),
-    end: addDays(endOfMonth(new Date()), 3),
-    title: 'A long event that spans 2 months',
-    color: colors.blue
-  }];
-
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: AlertModule) {}
+  recurringEvents: RecurringEvent[] = [{
+    id: 1,
+    title: 'Kojų ir pilvo preso treniruotė',
+    color: colors.red,
+    rrule: {
+      freq: RRule.MONTHLY,
+      byweekday: RRule.MO.nth(+2), // MO nurodo primadieni, +2 nurodo kad bus antra menesio savaite
+    }
+  }];
 
-  dayClicked({date, events}: {date: Date, events: CalendarEvent[]}): void {
+  dayClicked({ date, events }: { date: Date, events: CalendarEvent[] }): void {
 
     if (isSameMonth(date, this.viewDate)) {
       if (
@@ -142,10 +116,11 @@ calendarEvents: CalendarEvent[] = [];
     }
   }
   handleEvent(action: string, event: CalendarEvent): void {
-    this.modalData = {event, action};
+    this.modalData = { event, action };
+    console.log(this.modalData);
   }
-  
-    updateCalendarEvents(): void {
+
+  updateCalendarEvents(): void {
 
     this.calendarEvents = [];
 
@@ -161,10 +136,10 @@ calendarEvents: CalendarEvent[] = [];
       day: endOfDay
     };
 
-    this.recurringEvents.forEach(event => {
-
+    this.recurringEvents.forEach(event => {    
       const rule: RRule = new RRule(Object.assign({}, event.rrule, {
         dtstart: startOfPeriod[this.view](this.viewDate),
+        
         until: endOfPeriod[this.view](this.viewDate)
       }));
 
