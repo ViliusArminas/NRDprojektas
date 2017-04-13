@@ -22,6 +22,7 @@ import { CustomDateFormatter } from './custom-date-formatter.provider';
 import * as RRule from 'rrule';
 import { DataServiceService } from "app/services/data-service.service";
 import { Workout } from "app/models/workout";
+import { Router } from "@angular/router";
 
 
 const colors: any = {
@@ -63,9 +64,8 @@ interface RecurringEvent {
 export class WorkoutCalendarComponent implements OnInit {
   workouts: Workout[];
 
-
   isLoading: boolean = false;
-  constructor(private modal: AlertModule, private dataService: DataServiceService) { }
+  constructor(private modal: AlertModule, private dataService: DataServiceService, private router: Router) { }
 
   view: string = 'month';
 
@@ -85,7 +85,7 @@ export class WorkoutCalendarComponent implements OnInit {
 
   modalData: {
     action: string,
-    event: CalendarEvent
+    event: RecurringEvent
   };
 
   refresh: Subject<any> = new Subject();
@@ -97,7 +97,34 @@ export class WorkoutCalendarComponent implements OnInit {
     color: colors.red,
     rrule: {
       freq: RRule.MONTHLY,
-      byweekday: RRule.MO.nth(+2), // MO nurodo primadieni, +2 nurodo kad bus antra menesio savaite
+      byweekday: RRule.MO.nth(+1), // MO nurodo primadieni, +2 nurodo kad bus antra menesio savaite
+    }
+  },
+  {
+    id: 2,
+    title: 'Krūtinės ir rankų treniruotė',
+    color: colors.red,
+    rrule: {
+      freq: RRule.MONTHLY,
+      byweekday: RRule.TU.nth(+3), // MO nurodo primadieni, +2 nurodo kad bus antra menesio savaite
+    }
+  },
+  {
+    id: 3,
+    title: 'Nugaros treniruotė',
+    color: colors.red,
+    rrule: {
+      freq: RRule.MONTHLY,
+      byweekday: RRule.SA.nth(+4), // MO nurodo primadieni, +2 nurodo kad bus antra menesio savaite
+    }
+  },
+  {
+    id: 3,
+    title: 'Nugaros treniruotė',
+    color: colors.red,
+    rrule: {
+      freq: RRule.MONTHLY,
+      byweekday: RRule.SU.nth(+2), // MO nurodo primadieni, +2 nurodo kad bus antra menesio savaite
     }
   }];
 
@@ -115,9 +142,9 @@ export class WorkoutCalendarComponent implements OnInit {
       }
     }
   }
-  handleEvent(action: string, event: CalendarEvent): void {
+  handleEvent(action: string, event: RecurringEvent): void {
     this.modalData = { event, action };
-    console.log(this.modalData);
+    this.router.navigate(['/build-workout/' + this.modalData.event.id]);
   }
 
   updateCalendarEvents(): void {

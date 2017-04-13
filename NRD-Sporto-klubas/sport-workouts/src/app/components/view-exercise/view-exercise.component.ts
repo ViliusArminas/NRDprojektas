@@ -81,6 +81,7 @@ selectedMuscleGroup : MuscleGroup = null;
 
   selectMuscleGroup(selected : MuscleGroup){
     this.selectedMuscleGroup = selected;
+    
     this.refreshList();
   }
 
