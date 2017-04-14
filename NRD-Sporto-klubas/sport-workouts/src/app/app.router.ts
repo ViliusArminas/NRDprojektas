@@ -7,6 +7,7 @@ import { MyWorkoutsComponent } from './components/my-workouts/my-workouts.compon
 import { WorkoutCalendarComponent } from './components/workout-calendar/workout-calendar.component';
 import { ViewExerciseComponent } from './components/view-exercise/view-exercise.component';
 import { LoginComponent } from "app/components/login/login.component";
+import { ViewWorkoutComponent } from './components/view-workout/view-workout.component';
 
 export const router: Routes = [
     { path: '', redirectTo: 'build-workout/new', pathMatch: 'full' },
@@ -14,6 +15,7 @@ export const router: Routes = [
     { path: 'workout-calendar', component: WorkoutCalendarComponent },
     { path: 'my-workouts', component: MyWorkoutsComponent },
     { path: 'view-exercises', component: ViewExerciseComponent },
+    { path: 'view-workout/:id', component: ViewWorkoutComponent },
     { path: 'login', component: LoginComponent}
 ];
 

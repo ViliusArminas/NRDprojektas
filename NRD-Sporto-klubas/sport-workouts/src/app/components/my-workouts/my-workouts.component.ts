@@ -21,6 +21,10 @@ export class MyWorkoutsComponent implements OnInit {
     this.router.navigate(['/build-workout/' + workout.workoutId]);
   }
 
+  check(workout : Workout){
+    this.router.navigate(['/view-workout/' + workout.workoutId]);
+  }
+
   ngOnInit() {
     this.refreshList();
   }

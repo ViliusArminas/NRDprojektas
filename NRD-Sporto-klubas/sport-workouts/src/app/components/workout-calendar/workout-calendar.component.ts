@@ -130,7 +130,7 @@ refresh: Subject<any> = new Subject();
   }
 
   handleEvent(action: string, event: RecurringEvent): void {
-    this.router.navigate(['/build-workout/' + event.id]);
+    this.router.navigate(['/view-workout/' + event.id]);
   }
 
   updateCalendarEvents(recurringEvents: RecurringEvent[]): void {

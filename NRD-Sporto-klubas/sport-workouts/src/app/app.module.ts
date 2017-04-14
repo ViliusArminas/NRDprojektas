@@ -22,6 +22,7 @@ import { ExerciseGroupsComponent } from './components/exercise-groups/exercise-g
 import { WorkoutDayComponent } from './components/workout-day/workout-day.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthService } from "app/services/auth.service";
+import { ViewWorkoutComponent } from './components/view-workout/view-workout.component';
 
 export function authHttpServiceFactory(http: Http, options : RequestOptions){
   return new AuthHttp(new AuthConfig(), http, options);
@@ -38,7 +39,8 @@ export function authHttpServiceFactory(http: Http, options : RequestOptions){
     ExerciseComponent,
     ExerciseGroupsComponent,
     WorkoutDayComponent,
-    LoginComponent
+    LoginComponent,
+    ViewWorkoutComponent
   ],
   imports: [
     BrowserModule,
