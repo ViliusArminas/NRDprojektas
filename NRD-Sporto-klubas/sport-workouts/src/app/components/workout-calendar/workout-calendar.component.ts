@@ -70,6 +70,8 @@ export class WorkoutCalendarComponent implements OnInit {
   view: string = 'month';
 
   viewDate: Date = new Date();
+  otherDate: Date = new Date();
+  endDate = this.otherDate.setMonth(this.otherDate.getMonth()+1);
 
 
   calendarEvents: CalendarEvent[] = [];
@@ -91,44 +93,31 @@ export class WorkoutCalendarComponent implements OnInit {
   refresh: Subject<any> = new Subject();
   activeDayIsOpen: boolean = true;
 
-  recurringEvents: RecurringEvent[] = [{
-    id: 1,
-    title: 'Kojų ir pilvo preso treniruotė',
-    color: colors.red,
-    rrule: {
-      freq: RRule.MONTHLY,
-      byweekday: RRule.MO.nth(+1), // MO nurodo primadieni, +2 nurodo kad bus antra menesio savaite
-    }
-  },
-  {
-    id: 2,
-    title: 'Krūtinės ir rankų treniruotė',
-    color: colors.red,
-    rrule: {
-      freq: RRule.MONTHLY,
-      byweekday: RRule.TU.nth(+3), // MO nurodo primadieni, +2 nurodo kad bus antra menesio savaite
-    }
-  },
-  {
-    id: 3,
-    title: 'Nugaros treniruotė',
-    color: colors.red,
-    rrule: {
-      freq: RRule.MONTHLY,
-      byweekday: RRule.SA.nth(+4), // MO nurodo primadieni, +2 nurodo kad bus antra menesio savaite
-    }
-  },
-  {
-    id: 3,
-    title: 'Nugaros treniruotė',
-    color: colors.red,
-    rrule: {
-      freq: RRule.MONTHLY,
-      byweekday: RRule.SU.nth(+2), // MO nurodo primadieni, +2 nurodo kad bus antra menesio savaite
-    }
-  }];
+  recurringEvents: RecurringEvent[] = [];
 
-  dayClicked({ date, events }: { date: Date, events: CalendarEvent[] }): void {
+
+  getWeekDayTwoCharsCode(weekDay: number){
+    switch(weekDay){
+      case 1:
+        return RRule.MO;
+         case 2:
+        return RRule.TU;
+         case 3:
+        return RRule.WE;
+         case 4:
+        return RRule.TH;
+         case 5:
+        return RRule.FR;
+         case 6:
+        return RRule.SA;
+         case 7:
+        return RRule.SU;
+      default:
+        return null;
+    }
+  }
+
+  dayClicked({ date, events }: { date: Date, events: RecurringEvent[] }): void {
 
     if (isSameMonth(date, this.viewDate)) {
       if (
@@ -149,7 +138,12 @@ export class WorkoutCalendarComponent implements OnInit {
 
   updateCalendarEvents(): void {
 
-    this.calendarEvents = [];
+   
+    this.isLoading = true;
+    this.dataService.getWorkouts().then(c => {
+      this.workouts = c;
+      
+      this.calendarEvents = [];
 
     const startOfPeriod: any = {
       month: startOfMonth,
@@ -163,11 +157,28 @@ export class WorkoutCalendarComponent implements OnInit {
       day: endOfDay
     };
 
+    console.log(this.workouts);
+
+    this.workouts.forEach( work => {
+      work.workoutDays.forEach( day => {
+
+        var data = {
+          id: work.workoutId,
+          title: work.workoutName,
+           color: colors.red,
+           rrule: {
+           freq: RRule.MONTHLY,
+           byweekday: this.getWeekDayTwoCharsCode(day.workoutDayWeekDay).nth(+day.workoutDayMonthWeek), // MO nurodo primadieni, +2 nurodo kad bus antra menesio savaite
+    }};
+        this.recurringEvents.push(data);
+      });
+    });
+    console.log(this.recurringEvents);
     this.recurringEvents.forEach(event => {    
       const rule: RRule = new RRule(Object.assign({}, event.rrule, {
         dtstart: startOfPeriod[this.view](this.viewDate),
         
-        until: endOfPeriod[this.view](this.viewDate)
+        until: endOfPeriod[this.view](this.endDate)
       }));
 
       rule.all().forEach((date) => {
@@ -177,6 +188,9 @@ export class WorkoutCalendarComponent implements OnInit {
       });
 
     });
+     
+    });
+  this.isLoading = false;
 
   }
 
