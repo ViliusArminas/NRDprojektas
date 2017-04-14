@@ -41,7 +41,7 @@ const colors: any = {
 };
 
 interface RecurringEvent {
-      id: number;
+  id: number;
   title: string;
   color: any;
   rrule?: {
@@ -62,59 +62,56 @@ interface RecurringEvent {
 })
 
 export class WorkoutCalendarComponent implements OnInit {
-  workouts: Workout[];
 
+  workouts: Workout[];
   isLoading: boolean = false;
-  constructor(private modal: AlertModule, private dataService: DataServiceService, private router: Router) { }
 
   view: string = 'month';
+  locale: string = 'lt';
+refresh: Subject<any> = new Subject();
 
   viewDate: Date = new Date();
   otherDate: Date = new Date();
-  endDate = this.otherDate.setMonth(this.otherDate.getMonth()+1);
-
+  endDate = this.otherDate.setMonth(this.otherDate.getMonth() + 1);
 
   calendarEvents: CalendarEvent[] = [];
-
-  ngOnInit() {
-    this.updateCalendarEvents();
-  }
-
-  @ViewChild('modalContent') modalContent: TemplateRef<any>;
-
-
-  locale: string = 'lt';
-
-  modalData: {
-    action: string,
-    event: RecurringEvent
-  };
-
-  refresh: Subject<any> = new Subject();
   activeDayIsOpen: boolean = true;
-
   recurringEvents: RecurringEvent[] = [];
 
 
-  getWeekDayTwoCharsCode(weekDay: number){
-    switch(weekDay){
-      case 1:
-        return RRule.MO;
-         case 2:
-        return RRule.TU;
-         case 3:
-        return RRule.WE;
-         case 4:
-        return RRule.TH;
-         case 5:
-        return RRule.FR;
-         case 6:
-        return RRule.SA;
-         case 7:
-        return RRule.SU;
-      default:
-        return null;
-    }
+  constructor(private modal: AlertModule, private dataService: DataServiceService, private router: Router) { }
+
+  @ViewChild('modalContent') modalContent: TemplateRef<any>;
+
+  ngOnInit() {
+    this.refreshList();
+  }
+
+  refreshList() {
+    this.isLoading = true;
+    this.dataService.getWorkouts().then(c => {
+      this.workouts = c;
+      this.workouts.forEach(work => {
+        work.workoutDays.forEach(day => {
+
+          var data = {
+            id: work.workoutId,
+            title: work.workoutName,
+            color: colors.red,
+            rrule: {
+              freq: RRule.MONTHLY,
+              byweekday: this.getWeekDayTwoCharsCode(day.workoutDayWeekDay).nth(+day.workoutDayMonthWeek), // MO nurodo primadieni, +2 nurodo kad bus antra menesio savaite
+            }
+          };
+          this.recurringEvents.push(data);
+        });
+      });
+      
+      this.updateCalendarEvents(this.recurringEvents);
+      this.isLoading = false;
+      this.refresh.next();
+    });
+
   }
 
   dayClicked({ date, events }: { date: Date, events: RecurringEvent[] }): void {
@@ -131,67 +128,62 @@ export class WorkoutCalendarComponent implements OnInit {
       }
     }
   }
+
   handleEvent(action: string, event: RecurringEvent): void {
-    this.modalData = { event, action };
-    this.router.navigate(['/build-workout/' + this.modalData.event.id]);
+    this.router.navigate(['/build-workout/' + event.id]);
   }
 
-  updateCalendarEvents(): void {
-
-   
-    this.isLoading = true;
-    this.dataService.getWorkouts().then(c => {
-      this.workouts = c;
+  updateCalendarEvents(recurringEvents: RecurringEvent[]): void {
       
       this.calendarEvents = [];
 
-    const startOfPeriod: any = {
-      month: startOfMonth,
-      week: startOfWeek,
-      day: startOfDay
-    };
+      const startOfPeriod: any = {
+        month: startOfMonth,
+        week: startOfWeek,
+        day: startOfDay
+      };
 
-    const endOfPeriod: any = {
-      month: endOfMonth,
-      week: endOfWeek,
-      day: endOfDay
-    };
+      const endOfPeriod: any = {
+        month: endOfMonth,
+        week: endOfWeek,
+        day: endOfDay
+      };
 
-    console.log(this.workouts);
+      this.recurringEvents.forEach(event => {
+        const rule: RRule = new RRule(Object.assign({}, event.rrule, {
+          dtstart: startOfPeriod[this.view](this.viewDate),
 
-    this.workouts.forEach( work => {
-      work.workoutDays.forEach( day => {
-
-        var data = {
-          id: work.workoutId,
-          title: work.workoutName,
-           color: colors.red,
-           rrule: {
-           freq: RRule.MONTHLY,
-           byweekday: this.getWeekDayTwoCharsCode(day.workoutDayWeekDay).nth(+day.workoutDayMonthWeek), // MO nurodo primadieni, +2 nurodo kad bus antra menesio savaite
-    }};
-        this.recurringEvents.push(data);
-      });
-    });
-    console.log(this.recurringEvents);
-    this.recurringEvents.forEach(event => {    
-      const rule: RRule = new RRule(Object.assign({}, event.rrule, {
-        dtstart: startOfPeriod[this.view](this.viewDate),
-        
-        until: endOfPeriod[this.view](this.endDate)
-      }));
-
-      rule.all().forEach((date) => {
-        this.calendarEvents.push(Object.assign({}, event, {
-          start: new Date(date)
+          until: endOfPeriod[this.view](this.endDate)
         }));
+
+        rule.all().forEach((date) => {
+          this.calendarEvents.push(Object.assign({}, event, {
+            start: new Date(date)
+          }));
+        });
       });
+      this.refresh.next();
+  }
 
-    });
-     
-    });
-  this.isLoading = false;
-
+   getWeekDayTwoCharsCode(weekDay: number) {
+    switch (weekDay) {
+      case 1:
+        return RRule.MO;
+      case 2:
+        return RRule.TU;
+      case 3:
+        return RRule.WE;
+      case 4:
+        return RRule.TH;
+      case 5:
+        return RRule.FR;
+      case 6:
+        return RRule.SA;
+      case 7:
+        return RRule.SU;
+      default:
+        return null;
+    }
   }
 
 }

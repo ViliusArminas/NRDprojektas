@@ -32,6 +32,7 @@
         class="btn  btn-grey btn-default"
         (click)="view = 'month'"
         [class.active]="view === 'month'">
+        
         Mėnesis
       </div>
       <div
@@ -44,8 +45,7 @@
   </div>
 </div>
 <br>
-<div *ngIf="isLoading">Siunčiami duomenys...</div>
-  <div *ngIf="!isLoading">
+
 <div [ngSwitch]="view">
   <mwl-calendar-month-view
     *ngSwitchCase="'month'"
@@ -66,7 +66,7 @@
     (eventClicked)="handleEvent('Clicked', $event.event)">
   </mwl-calendar-week-view>
 </div>
-</div>
+
 <br><br><br>
 
 
