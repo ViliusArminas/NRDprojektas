@@ -7,7 +7,7 @@ export class AuthService {
 
   constructor(private http : Http) { }
 
-  login(username : string, password : string){
+  login(username : string, password : string): Promise<void>{
     var headers = new Headers();
     var body = new URLSearchParams();
 
@@ -16,10 +16,12 @@ export class AuthService {
     body.set('username', username);
     body.set('password', password);
 
-    this.http.post('http://localhost:49973/api/Token', body, {headers : headers})
+    return this.http.post('http://localhost:49974/api/Token', body, {headers : headers})
     .toPromise()
     .then(token => {
       localStorage.setItem('access_token', token.json().access_token);
+    }).catch(err => {
+      console.log("Wrong credentials");
     });
   }
 
