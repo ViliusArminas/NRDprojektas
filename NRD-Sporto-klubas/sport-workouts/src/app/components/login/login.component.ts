@@ -8,35 +8,35 @@ import { AuthService } from "app/services/auth.service";
 })
 export class LoginComponent implements OnInit {
 
-  username : string;
-  password : string;
+  username: string;
+  password: string;
 
-  wrongCredentials : boolean = false;
-  loggedOut : boolean = false;
+  wrongCredentials: boolean = false;
+  loggedOut: boolean = false;
 
-  constructor(private authService : AuthService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
 
-  login(){
+  login() {
     this.wrongCredentials = false;
     this.authService.login(this.username, this.password).then(() => {
-      if (this.authService.isLoggedIn()){
+      if (this.authService.isLoggedIn()) {
         console.log("Prisijungta");
-      }else{
+      } else {
         this.wrongCredentials = true;
       }
     });
   }
 
-  logout(){
+  logout() {
     this.loggedOut = false;
-    if (this.authService.isLoggedIn()){
+    if (this.authService.isLoggedIn()) {
       this.loggedOut = true;
       this.authService.logout();
     }
-    
+
   }
 
 

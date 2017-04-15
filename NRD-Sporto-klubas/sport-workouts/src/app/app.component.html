@@ -23,7 +23,8 @@
                   <li><a routerLink="my-workouts">Mano rutinos</a></li>
               </ul>
             </li>
-            <li><a routerLink="login">Prisijungti</a></li>
+            <li ><a *ngIf="!isLoggedIn()" routerLink="login">Prisijungti</a></li>
+             <li><a *ngIf="isLoggedIn()" (click)="logout()">Atsijungti</a></li>
           </ul>
         </div>
       </div>
